@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Visor de Urna - Modelo</title>
+
+</head>
+
+
+<body class="min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-10 bg-[#efe8d2] font-['Inter']">
+
+
+    <!-- =========================================================
+         CARTÃO / VISOR
+    ========================================================== -->
+
+    <div
+        class="relative w-full max-w-4xl bg-[#f7f2df] rounded-2xl p-5 sm:p-6 md:p-12 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.35)] overflow-hidden"
+    >
+
+
+        <!-- =====================================================
+             TELA FINAL
+        ====================================================== -->
+
+        <div
+            id="telaFinal"
+            class="hidden absolute inset-0 z-[100] bg-[#f7f2df]"
+        >
+
+            <img
+                src="../assets/images/fim.png"
+                alt="Votação encerrada"
+                class="w-full h-full object-cover"
+            >
+
+        </div>
+
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <div class="relative z-10 flex items-start justify-between gap-3">
+
+            <img
+                class="w-16 sm:w-20 md:w-24 flex-shrink-0"
+                src="../assets/images/Votus logo.png"
+                alt="Votus"
+            >
+
+            <div
+                class="font-['Archivo_Black']
+                       text-[#e3a99a]
+                       text-[10px] sm:text-xs md:text-sm
+                       uppercase
+                       tracking-[0.2em] md:tracking-[0.3em]
+                       text-right"
+            >
+                Ilustrativo
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
+
+        <div
+            class="relative z-10
+                   grid grid-cols-1
+                   md:grid-cols-[1fr_260px]
+                   gap-6 sm:gap-8 md:gap-10
+                   mt-5 md:mt-10"
+        >
+
+
+            <!-- =============================================
+                 DADOS DA VOTAÇÃO
+            ============================================== -->
+
+            <div class="min-w-0">
+
+                <div
+                    id="cargo"
+                    class="font-['Archivo_Black']
+                           text-2xl sm:text-3xl md:text-5xl
+                           text-[#1b623a]
+                           leading-none
+                           uppercase
+                           break-words"
+                >
+                    Deputada(o) Federal
+                </div>
+
+
+                <div
+                    id="instrucao"
+                    class="mt-3
+                           text-xs md:text-sm
+                           font-bold
+                           uppercase
+                           tracking-wider
+                           text-[#d9660d]"
+                >
+                    Digite o número do candidato
+                </div>
+
+
+                <!-- =========================================
+                     NÚMERO
+                ========================================== -->
+
+                <div
+                    id="numero"
+                    class="flex items-center
+                           gap-2 sm:gap-3
+                           mt-6
+                           flex-wrap
+                           min-h-[70px] sm:min-h-[80px]"
+                >
+                </div>
+
+
+                <!-- =========================================
+                     DADOS DO CANDIDATO
+                ========================================== -->
+
+                <div
+                    id="dadosCandidato"
+                    class="mt-8
+                           pt-6
+                           border-t-2
+                           border-dashed
+                           border-[#1b623a]/30
+                           space-y-2"
+                >
+
+                    <div class="text-sm md:text-base">
+
+                        <span class="font-bold text-[#1b623a]">
+                            Nome:
+                        </span>
+
+                        <span
+                            id="nomeCandidato"
+                            class="text-[#1b623a] ml-1"
+                        >
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="text-sm md:text-base">
+
+                        <span class="font-bold text-[#1b623a]">
+                            Partido:
+                        </span>
+
+                        <span
+                            id="partidoCandidato"
+                            class="text-[#1b623a] ml-1"
+                        >
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 FOTO
+            ============================================== -->
+
+            <div
+                class="relative
+                       w-full
+                       max-w-[280px]
+                       mx-auto
+                       md:max-w-none
+                       md:mx-0
+                       aspect-square
+                       flex-shrink-0"
+            >
+
+
+                <!-- TEXTURAS -->
+
+                <img
+                    src="../assets/images/textura1.png"
+                    class="absolute
+                           w-[55%]
+                           -bottom-[20%]
+                           -left-[35%]
+                           z-0
+                           pointer-events-none
+                           select-none"
+                    alt=""
+                >
+
+
+                <img
+                    src="../assets/images/textura2.png"
+                    class="absolute
+                           w-[100%]
+                           -top-[70%]
+                           -right-[60%]
+                           z-0
+                           pointer-events-none
+                           select-none"
+                    alt=""
+                >
+
+
+                <!-- =========================================
+                     MOLDURA + FOTO
+                ========================================== -->
+
+                <div class="relative z-10 w-full h-full">
+
+                    <img
+                        src="../assets/images/Moldura.png"
+                        class="absolute
+                               inset-0
+                               w-full
+                               h-full
+                               pointer-events-none
+                               select-none"
+                        alt=""
+                    >
+
+
+                    <div
+                        class="absolute
+                               inset-[12%]
+                               rounded-sm
+                               overflow-hidden"
+                    >
+
+                        <!-- FOTO DO CANDIDATO -->
+
+                        <img
+                            id="fotoCandidato"
+                            class="hidden
+                                   absolute
+                                   inset-0
+                                   w-full
+                                   h-full
+                                   object-cover"
+                            alt="Foto do candidato"
+                        >
+
+
+                        <!-- PLACEHOLDER -->
+
+                        <div
+                            id="fotoPlaceholder"
+                            class="w-full
+                                   h-full
+                                   flex
+                                   items-center
+                                   justify-center"
+                        >
+
+                            <img
+                                class="h-16 sm:h-20 md:h-24"
+                                src="../assets/images/Icon.png"
+                                alt=""
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     ORELHÃO
+                ========================================== -->
+
+                <img
+                    src="../assets/images/orelhao.png"
+                    class="absolute
+                           w-[80%]
+                           -top-[15%]
+                           -right-[40%]
+                           z-20
+                           pointer-events-none
+                           select-none"
+                    alt=""
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             MENSAGEM
+        ====================================================== -->
+
+        <div
+            id="mensagem"
+            class="relative z-10
+                   mt-8 md:mt-10
+                   pt-5
+                   border-t-2
+                   border-[#7a0e0e]/30
+                   text-center
+                   text-sm sm:text-base md:text-xl
+                   font-extrabold
+                   uppercase
+                   tracking-wide
+                   text-[#3f4f45]
+                   transition-colors duration-300
+                   break-words"
+        >
+            Digite o número
+        </div>
+
+
+        <!-- =====================================================
+             RODAPÉ
+        ====================================================== -->
+
+        <div
+            class="relative z-10
+                   flex items-center
+                   justify-between
+                   gap-3
+                   mt-6"
+        >
+
+            <div
+                class="font-['Archivo_Black']
+                       text-[#e3a99a]
+                       text-[10px] sm:text-xs md:text-sm
+                       uppercase
+                       tracking-[0.2em] md:tracking-[0.3em]"
+            >
+                Ilustrativo
+            </div>
+
+
+            <img
+                class="w-16 sm:w-20 md:w-24 flex-shrink-0"
+                src="../assets/images/Votus logo.png"
+                alt="Votus"
+            >
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================================================
+         ÁUDIOS
+    ========================================================== -->
+
+    <audio
+        id="somClique"
+        preload="auto"
+    >
+        <source
+            src="../assets/audios/Som-clicando.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <audio
+        id="somConfirmacao"
+        preload="auto"
+    >
+        <source
+            src="../assets/audios/som-confirmacao.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+
+    <script>
+
+
+        const chapa1 = [
+
+            {
+                nome: "Russas",
+                cargo: "Deputada(o) Federal",
+                Partido: "Vale do Jaguaribe",
+                numero: "25"
+            },
+
+            {
+                nome: "Limoeiro do Norte",
+                cargo: "Deputada(o) Estadual",
+                Partido: "Vale do Jaguaribe",
+                numero: "31456"
+            },
+
+            {
+                nome: "Jaguaribe",
+                cargo: "Senadora(or) - 1ª vaga",
+                Partido: "Vale do Jaguaribe",
+                numero: "278"
+            },
+
+            {
+                nome: "Quixeré",
+                cargo: "Senadora(or) - 2ª vaga",
+                Partido: "Vale do Jaguaribe",
+                numero: "691"
+            },
+
+            {
+                nome: "Morada Nova",
+                cargo: "Governadora(or)",
+                Partido: "Vale do Jaguaribe",
+                numero: "37"
+            },
+
+            {
+                nome: "Tabuleiro do Norte",
+                cargo: "Presidente da República",
+                Partido: "Vale do Jaguaribe",
+                numero: "21"
+            }
+
+        ];
+
+
+        const chapa2 = {
+
+            numero: 2,
+
+            nome: "LITORAL LESTE",
+
+            candidatos: [
+
+                {
+                    nome: "Aracati",
+                    cargo: "Deputada(o) Federal",
+                    Partido: "Litoral Leste",
+                    numero: "45"
+                },
+
+                {
+                    nome: "Beberibe",
+                    cargo: "Deputada(o) Estadual",
+                    Partido: "Litoral Leste",
+                    numero: "67891"
+                },
+
+                {
+                    nome: "Cascavel",
+                    cargo: "Senadora(or) - 1ª vaga",
+                    Partido: "Litoral Leste",
+                    numero: "542"
+                },
+
+                {
+                    nome: "Fortim",
+                    cargo: "Senadora(or) - 2ª vaga",
+                    Partido: "Litoral Leste",
+                    numero: "783"
+                },
+
+                {
+                    nome: "Icapuí",
+                    cargo: "Governadora(or)",
+                    Partido: "Litoral Leste",
+                    numero: "56"
+                },
+
+                {
+                    nome: "Pindoretama",
+                    cargo: "Presidente da República",
+                    Partido: "Litoral Leste",
+                    numero: "18"
+                }
+
+            ]
+
+        };
+
+
+        const candidatos = [
+
+            ...chapa1,
+
+            ...chapa2.candidatos
+
+        ];
+
+
+        const cargos = [
+
+            "Deputada(o) Federal",
+            "Deputada(o) Estadual",
+            "Senadora(or) - 1ª vaga",
+            "Senadora(or) - 2ª vaga",
+            "Governadora(or)",
+            "Presidente da República"
+
+        ];
+
+
+        const elementoCargo =
+            document.getElementById("cargo");
+
+
+        const elementoInstrucao =
+            document.getElementById("instrucao");
+
+
+        const elementoNumero =
+            document.getElementById("numero");
+
+
+        const elementoMensagem =
+            document.getElementById("mensagem");
+
+
+        const nomeCandidato =
+            document.getElementById("nomeCandidato");
+
+
+        const partidoCandidato =
+            document.getElementById("partidoCandidato");
+
+
+        const fotoCandidato =
+            document.getElementById("fotoCandidato");
+
+
+        const fotoPlaceholder =
+            document.getElementById("fotoPlaceholder");
+
+
+        const somClique =
+            document.getElementById("somClique");
+
+
+        const somConfirmacao =
+            document.getElementById("somConfirmacao");
+
+
+        const telaFinal =
+            document.getElementById("telaFinal");
+
+
+        let cargoAtual = 0;
+
+        let votoAtual = "";
+
+        let votacaoFinalizada = false;
+
+        let votoConfirmado = false;
+
+
+
+        // =========================================================
+        // CLASSES DOS INPUTS
+        // =========================================================
+
+        const CLASSE_INPUT_NUMERO =
+            "numero-input font-['Space_Mono'] w-11 h-14 sm:w-14 sm:h-16 md:w-16 md:h-20 border-2 border-[#1b623a] rounded-md text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#1b623a] outline-none transition-colors duration-150 focus:border-[#d9660d]";
+
+
+        const CLASSES_PREENCHIDO = [
+            "bg-[#eaf6ee]"
+        ];
+
+
+        const CLASSES_MENSAGEM_TIPO = {
+
+            padrao: [
+                "text-[#3f4f45]"
+            ],
+
+            invalido: [
+                "text-[#8d0801]"
+            ],
+
+            confirmado: [
+                "text-[#1b623a]"
+            ],
+
+            branco: [
+                "text-[#d9660d]"
+            ]
+
+        };
+
+
+
+        // =========================================================
+        // CANDIDATOS DO CARGO
+        // =========================================================
+
+        function getCandidatosDoCargo() {
+
+            const cargo = cargos[cargoAtual];
+
+            return candidatos.filter((candidato) => {
+
+                return candidato.cargo === cargo;
+
+            });
+
+        }
+
+
+
+        // =========================================================
+        // QUANTIDADE DE DÍGITOS
+        // =========================================================
+
+        function getQuantidadeDigitos() {
+
+            const candidatosCargo =
+                getCandidatosDoCargo();
+
+
+            if (candidatosCargo.length === 0) {
+
+                return 0;
+
+            }
+
+
+            return String(
+                candidatosCargo[0].numero
+            ).length;
+
+        }
+
+
+
+        // =========================================================
+        // SOM DE CLIQUE
+        // =========================================================
+
+        function tocarSomClique() {
+
+            somClique.currentTime = 0;
+
+            somClique.play().catch(() => {
+
+                console.log(
+                    "Não foi possível tocar o som de clique."
+                );
+
+            });
+
+        }
+
+
+
+        // =========================================================
+        // SOM DE CONFIRMAÇÃO
+        // =========================================================
+
+        function tocarSomConfirmacao() {
+
+            somConfirmacao.currentTime = 0;
+
+            somConfirmacao.play().catch(() => {
+
+                console.log(
+                    "Não foi possível tocar o som de confirmação."
+                );
+
+            });
+
+        }
+
+
+
+        // =========================================================
+        // MENSAGEM
+        // =========================================================
+
+        function definirMensagem(texto, tipo) {
+
+            elementoMensagem.textContent = texto;
+
+
+            Object.values(
+                CLASSES_MENSAGEM_TIPO
+            )
+            .flat()
+            .forEach((classe) => {
+
+                elementoMensagem.classList.remove(
+                    classe
+                );
+
+            });
+
+
+            const classesAlvo =
+                CLASSES_MENSAGEM_TIPO[tipo]
+                ||
+                CLASSES_MENSAGEM_TIPO.padrao;
+
+
+            classesAlvo.forEach((classe) => {
+
+                elementoMensagem.classList.add(
+                    classe
+                );
+
+            });
+
+        }
+
+
+
+        // =========================================================
+        // INPUT PREENCHIDO
+        // =========================================================
+
+        function marcarPreenchido(
+            input,
+            preenchido
+        ) {
+
+            CLASSES_PREENCHIDO.forEach((classe) => {
+
+                if (preenchido) {
+
+                    input.classList.add(
+                        classe
+                    );
+
+                } else {
+
+                    input.classList.remove(
+                        classe
+                    );
+
+                }
+
+            });
+
+        }
+
+
+
+        // =========================================================
+        // CRIAR INPUTS
+        // =========================================================
+
+        function criarInputs() {
+
+            elementoNumero.innerHTML = "";
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+
+            const quantidade =
+                getQuantidadeDigitos();
+
+
+            for (
+                let i = 0;
+                i < quantidade;
+                i++
+            ) {
+
+                const input =
+                    document.createElement("input");
+
+
+                input.type = "text";
+
+                input.maxLength = 1;
+
+                input.inputMode = "numeric";
+
+                input.autocomplete = "off";
+
+                input.className =
+                    CLASSE_INPUT_NUMERO;
+
+
+                elementoNumero.appendChild(
+                    input
+                );
+
+
+                configurarInput(
+                    input,
+                    i,
+                    quantidade
+                );
+
+            }
+
+
+            const primeiroInput =
+                elementoNumero.querySelector(
+                    ".numero-input"
+                );
+
+
+            if (primeiroInput) {
+
+                primeiroInput.focus();
+
+            }
+
+        }
+
+
+
+        // =========================================================
+        // CONFIGURAR INPUT
+        // =========================================================
+
+        function configurarInput(
+            input,
+            index,
+            quantidade
+        ) {
+
+
+            input.addEventListener(
+                "input",
+                () => {
+
+                    if (votacaoFinalizada) {
+
+                        return;
+
+                    }
+
+
+                    let valor =
+                        input.value
+                            .replace(/\D/g, "")
+                            .substring(0, 1);
+
+
+                    input.value = valor;
+
+
+                    marcarPreenchido(
+                        input,
+                        valor !== ""
+                    );
+
+
+                    if (valor !== "") {
+
+                        tocarSomClique();
+
+                        atualizarVoto();
+
+
+                        if (
+                            index <
+                            quantidade - 1
+                        ) {
+
+                            const inputs =
+                                elementoNumero
+                                    .querySelectorAll(
+                                        ".numero-input"
+                                    );
+
+
+                            inputs[
+                                index + 1
+                            ].focus();
+
+
+                        } else {
+
+                            verificarNumero();
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+
+            input.addEventListener(
+                "keydown",
+                (event) => {
+
+                    if (votacaoFinalizada) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        event.key ===
+                        "Backspace"
+                    ) {
+
+                        event.preventDefault();
+
+                        limparTodosInputs();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        event.key ===
+                        "Delete"
+                    ) {
+
+                        event.preventDefault();
+
+                        limparTodosInputs();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        event.key === "."
+                    ) {
+
+                        event.preventDefault();
+
+                        limparTodosInputs();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        event.key ===
+                        "Enter"
+                    ) {
+
+                        event.preventDefault();
+
+                        confirmarVoto();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        event.key === "+"
+                    ) {
+
+                        event.preventDefault();
+
+                        votarBranco();
+
+                        return;
+
+                    }
+
+
+                    if (
+                        event.key ===
+                        "ArrowLeft"
+                    ) {
+
+                        event.preventDefault();
+
+
+                        if (index > 0) {
+
+                            const inputs =
+                                elementoNumero
+                                    .querySelectorAll(
+                                        ".numero-input"
+                                    );
+
+
+                            inputs[
+                                index - 1
+                            ].focus();
+
+                        }
+
+                    }
+
+
+                    if (
+                        event.key ===
+                        "ArrowRight"
+                    ) {
+
+                        event.preventDefault();
+
+
+                        if (
+                            index <
+                            quantidade - 1
+                        ) {
+
+                            const inputs =
+                                elementoNumero
+                                    .querySelectorAll(
+                                        ".numero-input"
+                                    );
+
+
+                            inputs[
+                                index + 1
+                            ].focus();
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
+
+
+
+        // =========================================================
+        // LIMPAR INPUTS
+        // =========================================================
+
+        function limparTodosInputs() {
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            inputs.forEach((input) => {
+
+                input.value = "";
+
+                marcarPreenchido(
+                    input,
+                    false
+                );
+
+            });
+
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            if (inputs.length > 0) {
+
+                inputs[0].focus();
+
+            }
+
+        }
+
+
+
+        // =========================================================
+        // ATUALIZAR VOTO
+        // =========================================================
+
+        function atualizarVoto() {
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            votoAtual = "";
+
+
+            inputs.forEach((input) => {
+
+                votoAtual += input.value;
+
+            });
+
+        }
+
+
+
+        // =========================================================
+        // ENCONTRAR CANDIDATO
+        // =========================================================
+
+        function encontrarCandidato() {
+
+            const candidatosCargo =
+                getCandidatosDoCargo();
+
+
+            return candidatosCargo.find(
+                (candidato) => {
+
+                    return String(
+                        candidato.numero
+                    ) === String(
+                        votoAtual
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        // =========================================================
+        // VERIFICAR NÚMERO
+        // =========================================================
+
+        function verificarNumero() {
+
+            atualizarVoto();
+
+
+            const quantidade =
+                getQuantidadeDigitos();
+
+
+            if (
+                votoAtual.length !==
+                quantidade
+            ) {
+
+                return;
+
+            }
+
+
+            const candidato =
+                encontrarCandidato();
+
+
+            if (candidato) {
+
+                mostrarCandidato(
+                    candidato
+                );
+
+            } else {
+
+                mostrarNumeroInvalido();
+
+            }
+
+        }
+
+
+
+        // =========================================================
+        // MOSTRAR CANDIDATO
+        // =========================================================
+
+        function mostrarCandidato(
+            candidato
+        ) {
+
+            nomeCandidato.innerText =
+                (candidato.nome || "")
+                    .trim();
+
+
+            partidoCandidato.innerText =
+                candidato.Partido ||
+                "—";
+
+
+            mostrarFoto(
+                candidato
+            );
+
+
+            definirMensagem(
+                "Confira os dados e pressione ENTER para confirmar."
+            );
+
+        }
+
+
+
+        // =========================================================
+        // LIMPAR DADOS
+        // =========================================================
+
+        function limparDadosCandidato() {
+
+            nomeCandidato.innerText =
+                "—";
+
+
+            partidoCandidato.innerText =
+                "—";
+
+        }
+
+
+
+        // =========================================================
+        // REMOVER ACENTOS
+        // =========================================================
+
+        function removerAcentos(
+            texto
+        ) {
+
+            return texto
+                .normalize("NFD")
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                );
+
+        }
+
+
+
+        // =========================================================
+        // MOSTRAR FOTO
+        // =========================================================
+
+        function mostrarFoto(
+            candidato
+        ) {
+
+            const nomeArquivo =
+                removerAcentos(
+                    (candidato.nome || "")
+                        .trim()
+                );
+
+
+            const caminhoFoto =
+                "../assets/images/" +
+                encodeURIComponent(
+                    nomeArquivo
+                ) +
+                ".png";
+
+
+            fotoCandidato.onerror =
+                () => {
+
+                    esconderFoto();
+
+                };
+
+
+            fotoCandidato.onload =
+                () => {
+
+                    fotoCandidato.classList
+                        .remove(
+                            "hidden"
+                        );
+
+
+                    fotoPlaceholder.classList
+                        .add(
+                            "hidden"
+                        );
+
+                };
+
+
+            fotoCandidato.src =
+                caminhoFoto;
+
+        }
+
+
+
+        // =========================================================
+        // ESCONDER FOTO
+        // =========================================================
+
+        function esconderFoto() {
+
+            fotoCandidato.classList.add(
+                "hidden"
+            );
+
+
+            fotoCandidato.removeAttribute(
+                "src"
+            );
+
+
+            fotoPlaceholder.classList.remove(
+                "hidden"
+            );
+
+        }
+
+
+
+        // =========================================================
+        // NÚMERO INVÁLIDO
+        // =========================================================
+
+        function mostrarNumeroInvalido() {
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem(
+                "✕ NÚMERO INVÁLIDO",
+                "invalido"
+            );
+
+
+            setTimeout(() => {
+
+                limparTodosInputs();
+
+            }, 1000);
+
+        }
+
+
+
+        // =========================================================
+        // CONFIRMAR VOTO
+        // =========================================================
+
+        function confirmarVoto() {
+
+            if (votacaoFinalizada) {
+
+                return;
+
+            }
+
+
+            if (votoConfirmado) {
+
+                return;
+
+            }
+
+
+            atualizarVoto();
+
+
+            const quantidade =
+                getQuantidadeDigitos();
+
+
+            if (
+                votoAtual.length !==
+                quantidade
+            ) {
+
+                definirMensagem(
+                    "Digite todos os números."
+                );
+
+                return;
+
+            }
+
+
+            const candidato =
+                encontrarCandidato();
+
+
+            if (!candidato) {
+
+                definirMensagem(
+                    "✕ NÚMERO INVÁLIDO",
+                    "invalido"
+                );
+
+                return;
+
+            }
+
+
+            votoConfirmado = true;
+
+
+            mostrarCandidato(
+                candidato
+            );
+
+
+            tocarSomConfirmacao();
+
+
+            definirMensagem(
+                "✓ VOTO CONFIRMADO",
+                "confirmado"
+            );
+
+
+            desabilitarInputs();
+
+
+            setTimeout(() => {
+
+                proximoCargo();
+
+            }, 1200);
+
+        }
+
+
+
+        // =========================================================
+        // VOTO EM BRANCO
+        // =========================================================
+
+        function votarBranco() {
+
+            if (votacaoFinalizada) {
+
+                return;
+
+            }
+
+
+            if (votoConfirmado) {
+
+                return;
+
+            }
+
+
+            votoConfirmado = true;
+
+            votoAtual = "BRANCO";
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            tocarSomConfirmacao();
+
+
+            definirMensagem(
+                "▢ VOTO EM BRANCO CONFIRMADO",
+                "branco"
+            );
+
+
+            desabilitarInputs();
+
+
+            setTimeout(() => {
+
+                proximoCargo();
+
+            }, 1200);
+
+        }
+
+
+
+        // =========================================================
+        // DESABILITAR INPUTS
+        // =========================================================
+
+        function desabilitarInputs() {
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            inputs.forEach((input) => {
+
+                input.disabled = true;
+
+            });
+
+        }
+
+
+
+        // =========================================================
+        // PRÓXIMO CARGO
+        // =========================================================
+
+        function proximoCargo() {
+
+            cargoAtual++;
+
+
+            if (
+                cargoAtual >=
+                cargos.length
+            ) {
+
+                finalizarVotacao();
+
+                return;
+
+            }
+
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            elementoCargo.innerText =
+                cargos[cargoAtual];
+
+
+            elementoInstrucao.innerText =
+                "Digite o número do candidato";
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            criarInputs();
+
+        }
+
+
+
+        // =========================================================
+        // FINALIZAR VOTAÇÃO
+        //
+        // AQUI É ONDE A IMAGEM "fim.png" APARECE.
+        // =========================================================
+
+        function finalizarVotacao() {
+
+            votacaoFinalizada = true;
+
+
+            elementoCargo.innerText =
+                "VOTAÇÃO ENCERRADA";
+
+
+            elementoInstrucao.innerText =
+                "Obrigado por votar";
+
+
+            elementoNumero.innerHTML =
+                "";
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem("");
+
+
+            // Mostra a imagem final
+            telaFinal.classList.remove(
+                "hidden"
+            );
+
+
+            // Depois de 2 segundos,
+            // inicia uma nova votação.
+            setTimeout(() => {
+
+                reiniciarVotacao();
+
+            }, 2000);
+
+        }
+
+
+
+        // =========================================================
+        // REINICIAR VOTAÇÃO
+        // =========================================================
+
+        function reiniciarVotacao() {
+
+            // Esconde a imagem "fim.png"
+            telaFinal.classList.add(
+                "hidden"
+            );
+
+
+            cargoAtual = 0;
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+            votacaoFinalizada = false;
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            elementoCargo.innerText =
+                cargos[0];
+
+
+            elementoInstrucao.innerText =
+                "Digite o número do candidato";
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            criarInputs();
+
+        }
+
+
+
+        // =========================================================
+        // TECLADO GLOBAL
+        // =========================================================
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                const elementoAtivo =
+                    document.activeElement;
+
+
+                const focoEmInput =
+                    elementoAtivo &&
+                    elementoAtivo.classList
+                        .contains(
+                            "numero-input"
+                        );
+
+
+                if (focoEmInput) {
+
+                    return;
+
+                }
+
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    confirmarVoto();
+
+                    return;
+
+                }
+
+
+                if (
+                    event.key ===
+                    "+"
+                ) {
+
+                    event.preventDefault();
+
+                    votarBranco();
+
+                    return;
+
+                }
+
+            }
+        );
+
+
+
+        // =========================================================
+        // INICIAR URNA
+        // =========================================================
+
+        function iniciarUrna() {
+
+            cargoAtual = 0;
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+            votacaoFinalizada = false;
+
+
+            // Garante que a tela final esteja escondida
+            telaFinal.classList.add(
+                "hidden"
+            );
+
+
+            elementoCargo.innerText =
+                cargos[0];
+
+
+            elementoInstrucao.innerText =
+                "Digite o número do candidato";
+
+
+            limparDadosCandidato();
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            criarInputs();
+
+        }
+
+
+
+        // =========================================================
+        // INÍCIO
+        // =========================================================
+
+        iniciarUrna();
+
+
+    </script>
+
+
+</body>
+
+</html>
