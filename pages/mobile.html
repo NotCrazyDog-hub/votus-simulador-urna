@@ -264,11 +264,67 @@
             }
         }
 
+
+        /* ==========================================
+           BOTÃO TELA CHEIA
+        ========================================== */
+
+        #btnTelaCheia {
+            position: fixed;
+            top: max(10px, env(safe-area-inset-top));
+            right: max(10px, env(safe-area-inset-right));
+            z-index: 9999;
+
+            width: auto;
+            min-width: 110px;
+            height: 42px;
+            padding: 0 12px;
+
+            background: #17643c;
+            color: #ffffff;
+            border-radius: 8px;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+        }
+
+        #btnTelaCheia.hidden {
+            display: none;
+        }
+
+        /* No modo tela cheia, mantém o teclado centralizado */
+        :fullscreen body {
+            min-height: 100dvh;
+        }
+
+        @media (max-width: 360px) {
+            #btnTelaCheia {
+                min-width: 96px;
+                height: 38px;
+                font-size: 11px;
+                padding: 0 9px;
+            }
+        }
+
     </style>
 </head>
 
 
+
 <body>
+
+    <!-- BOTÃO PARA ATIVAR TELA CHEIA NO CELULAR/TABLET -->
+    <button
+        id="btnTelaCheia"
+        type="button"
+        aria-label="Ativar tela cheia"
+        onclick="ativarTelaCheia()"
+    >
+        ⛶ TELA CHEIA
+    </button>
+
 
 
     <!-- ==========================================
@@ -542,6 +598,76 @@
 
                 }
             );
+
+
+        /* ==========================================
+           TELA CHEIA — CELULAR / TABLET
+        ========================================== */
+
+        const btnTelaCheia = document.getElementById("btnTelaCheia");
+
+        function estaEmTelaCheia() {
+            return !!(
+                document.fullscreenElement ||
+                document.webkitFullscreenElement ||
+                document.msFullscreenElement
+            );
+        }
+
+        function atualizarBotaoTelaCheia() {
+            if (!btnTelaCheia) return;
+
+            if (estaEmTelaCheia()) {
+                btnTelaCheia.classList.add("hidden");
+            } else {
+                btnTelaCheia.classList.remove("hidden");
+            }
+        }
+
+        async function ativarTelaCheia() {
+            const elemento = document.documentElement;
+
+            try {
+                if (document.fullscreenElement) {
+                    return;
+                }
+
+                if (elemento.requestFullscreen) {
+                    await elemento.requestFullscreen();
+                } else if (elemento.webkitRequestFullscreen) {
+                    elemento.webkitRequestFullscreen();
+                } else if (elemento.msRequestFullscreen) {
+                    elemento.msRequestFullscreen();
+                } else {
+                    alert(
+                        "Este navegador não oferece suporte à tela cheia. " +
+                        "No celular, tente abrir o site pelo navegador em modo de tela cheia."
+                    );
+                    return;
+                }
+
+                atualizarBotaoTelaCheia();
+            } catch (erro) {
+                console.log("Não foi possível ativar a tela cheia:", erro);
+            }
+        }
+
+        document.addEventListener(
+            "fullscreenchange",
+            atualizarBotaoTelaCheia
+        );
+
+        document.addEventListener(
+            "webkitfullscreenchange",
+            atualizarBotaoTelaCheia
+        );
+
+        document.addEventListener(
+            "MSFullscreenChange",
+            atualizarBotaoTelaCheia
+        );
+
+        atualizarBotaoTelaCheia();
 
     </script>
 
