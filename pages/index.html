@@ -43,7 +43,7 @@
 
         <div
             id="telaFinal"
-            class="hidden absolute inset-0 z-[100] bg-[#f7f2df]"
+            class="hidden absolute inset-0 z-[100] bg-[#f7f0dc]"
         >
 
             <img
@@ -206,8 +206,7 @@
                        flex-shrink-0"
             >
 
-
-                <!-- TEXTURAS -->
+                <!-- TEXTURA 1 -->
 
                 <img
                     src="../assets/images/textura1.png"
@@ -222,6 +221,8 @@
                 >
 
 
+                <!-- TEXTURA 2 -->
+
                 <img
                     src="../assets/images/textura2.png"
                     class="absolute
@@ -235,9 +236,7 @@
                 >
 
 
-                <!-- =========================================
-                     MOLDURA + FOTO
-                ========================================== -->
+                <!-- MOLDURA + FOTO -->
 
                 <div class="relative z-10 w-full h-full">
 
@@ -260,7 +259,7 @@
                                overflow-hidden"
                     >
 
-                        <!-- FOTO DO CANDIDATO -->
+                        <!-- FOTO -->
 
                         <img
                             id="fotoCandidato"
@@ -298,9 +297,7 @@
                 </div>
 
 
-                <!-- =========================================
-                     ORELHÃO
-                ========================================== -->
+                <!-- ORELHÃO -->
 
                 <img
                     src="../assets/images/orelhao.png"
@@ -315,7 +312,6 @@
                 >
 
             </div>
-
 
         </div>
 
@@ -375,9 +371,7 @@
 
         </div>
 
-
     </div>
-
 
 
     <!-- =========================================================
@@ -388,10 +382,12 @@
         id="somClique"
         preload="auto"
     >
+
         <source
             src="../assets/audios/Som-clicando.mp3"
             type="audio/mpeg"
         >
+
     </audio>
 
 
@@ -399,12 +395,13 @@
         id="somConfirmacao"
         preload="auto"
     >
+
         <source
             src="../assets/audios/som-confirmacao.mp3"
             type="audio/mpeg"
         >
-    </audio>
 
+    </audio>
 
 
     <!-- =========================================================
@@ -413,6 +410,10 @@
 
     <script>
 
+
+        // =========================================================
+        // CHAPA 1
+        // =========================================================
 
         const chapa1 = [
 
@@ -460,6 +461,10 @@
 
         ];
 
+
+        // =========================================================
+        // CHAPA 2
+        // =========================================================
 
         const chapa2 = {
 
@@ -516,6 +521,10 @@
         };
 
 
+        // =========================================================
+        // TODOS OS CANDIDATOS
+        // =========================================================
+
         const candidatos = [
 
             ...chapa1,
@@ -525,17 +534,30 @@
         ];
 
 
+        // =========================================================
+        // CARGOS
+        // =========================================================
+
         const cargos = [
 
             "Deputada(o) Federal",
+
             "Deputada(o) Estadual",
+
             "Senadora(or) - 1ª vaga",
+
             "Senadora(or) - 2ª vaga",
+
             "Governadora(or)",
+
             "Presidente da República"
 
         ];
 
+
+        // =========================================================
+        // ELEMENTOS HTML
+        // =========================================================
 
         const elementoCargo =
             document.getElementById("cargo");
@@ -581,6 +603,10 @@
             document.getElementById("telaFinal");
 
 
+        // =========================================================
+        // VARIÁVEIS
+        // =========================================================
+
         let cargoAtual = 0;
 
         let votoAtual = "";
@@ -590,9 +616,8 @@
         let votoConfirmado = false;
 
 
-
         // =========================================================
-        // CLASSES DOS INPUTS
+        // CLASSE DOS INPUTS
         // =========================================================
 
         const CLASSE_INPUT_NUMERO =
@@ -600,30 +625,39 @@
 
 
         const CLASSES_PREENCHIDO = [
+
             "bg-[#eaf6ee]"
+
         ];
 
 
         const CLASSES_MENSAGEM_TIPO = {
 
             padrao: [
+
                 "text-[#3f4f45]"
+
             ],
 
             invalido: [
+
                 "text-[#8d0801]"
+
             ],
 
             confirmado: [
+
                 "text-[#1b623a]"
+
             ],
 
             branco: [
+
                 "text-[#d9660d]"
+
             ]
 
         };
-
 
 
         // =========================================================
@@ -632,16 +666,19 @@
 
         function getCandidatosDoCargo() {
 
-            const cargo = cargos[cargoAtual];
+            const cargo =
+                cargos[cargoAtual];
 
-            return candidatos.filter((candidato) => {
 
-                return candidato.cargo === cargo;
+            return candidatos.filter(
+                (candidato) => {
 
-            });
+                    return candidato.cargo === cargo;
+
+                }
+            );
 
         }
-
 
 
         // =========================================================
@@ -654,7 +691,9 @@
                 getCandidatosDoCargo();
 
 
-            if (candidatosCargo.length === 0) {
+            if (
+                candidatosCargo.length === 0
+            ) {
 
                 return 0;
 
@@ -668,7 +707,6 @@
         }
 
 
-
         // =========================================================
         // SOM DE CLIQUE
         // =========================================================
@@ -676,6 +714,7 @@
         function tocarSomClique() {
 
             somClique.currentTime = 0;
+
 
             somClique.play().catch(() => {
 
@@ -688,7 +727,6 @@
         }
 
 
-
         // =========================================================
         // SOM DE CONFIRMAÇÃO
         // =========================================================
@@ -696,6 +734,7 @@
         function tocarSomConfirmacao() {
 
             somConfirmacao.currentTime = 0;
+
 
             somConfirmacao.play().catch(() => {
 
@@ -708,14 +747,17 @@
         }
 
 
-
         // =========================================================
         // MENSAGEM
         // =========================================================
 
-        function definirMensagem(texto, tipo) {
+        function definirMensagem(
+            texto,
+            tipo = "padrao"
+        ) {
 
-            elementoMensagem.textContent = texto;
+            elementoMensagem.textContent =
+                texto;
 
 
             Object.values(
@@ -748,7 +790,6 @@
         }
 
 
-
         // =========================================================
         // INPUT PREENCHIDO
         // =========================================================
@@ -758,26 +799,27 @@
             preenchido
         ) {
 
-            CLASSES_PREENCHIDO.forEach((classe) => {
+            CLASSES_PREENCHIDO.forEach(
+                (classe) => {
 
-                if (preenchido) {
+                    if (preenchido) {
 
-                    input.classList.add(
-                        classe
-                    );
+                        input.classList.add(
+                            classe
+                        );
 
-                } else {
+                    } else {
 
-                    input.classList.remove(
-                        classe
-                    );
+                        input.classList.remove(
+                            classe
+                        );
+
+                    }
 
                 }
-
-            });
+            );
 
         }
-
 
 
         // =========================================================
@@ -804,7 +846,9 @@
             ) {
 
                 const input =
-                    document.createElement("input");
+                    document.createElement(
+                        "input"
+                    );
 
 
                 input.type = "text";
@@ -848,7 +892,6 @@
         }
 
 
-
         // =========================================================
         // CONFIGURAR INPUT
         // =========================================================
@@ -859,12 +902,13 @@
             quantidade
         ) {
 
-
             input.addEventListener(
                 "input",
                 () => {
 
-                    if (votacaoFinalizada) {
+                    if (
+                        votacaoFinalizada
+                    ) {
 
                         return;
 
@@ -877,7 +921,8 @@
                             .substring(0, 1);
 
 
-                    input.value = valor;
+                    input.value =
+                        valor;
 
 
                     marcarPreenchido(
@@ -886,7 +931,9 @@
                     );
 
 
-                    if (valor !== "") {
+                    if (
+                        valor !== ""
+                    ) {
 
                         tocarSomClique();
 
@@ -909,7 +956,6 @@
                                 index + 1
                             ].focus();
 
-
                         } else {
 
                             verificarNumero();
@@ -922,12 +968,13 @@
             );
 
 
-
             input.addEventListener(
                 "keydown",
                 (event) => {
 
-                    if (votacaoFinalizada) {
+                    if (
+                        votacaoFinalizada
+                    ) {
 
                         return;
 
@@ -990,7 +1037,8 @@
 
 
                     if (
-                        event.key === "+"
+                        event.key ===
+                        "+"
                     ) {
 
                         event.preventDefault();
@@ -1010,7 +1058,9 @@
                         event.preventDefault();
 
 
-                        if (index > 0) {
+                        if (
+                            index > 0
+                        ) {
 
                             const inputs =
                                 elementoNumero
@@ -1062,7 +1112,6 @@
         }
 
 
-
         // =========================================================
         // LIMPAR INPUTS
         // =========================================================
@@ -1075,16 +1124,20 @@
                 );
 
 
-            inputs.forEach((input) => {
+            inputs.forEach(
+                (input) => {
 
-                input.value = "";
+                    input.value = "";
 
-                marcarPreenchido(
-                    input,
-                    false
-                );
+                    marcarPreenchido(
+                        input,
+                        false
+                    );
 
-            });
+                    input.disabled = false;
+
+                }
+            );
 
 
             votoAtual = "";
@@ -1102,14 +1155,15 @@
             );
 
 
-            if (inputs.length > 0) {
+            if (
+                inputs.length > 0
+            ) {
 
                 inputs[0].focus();
 
             }
 
         }
-
 
 
         // =========================================================
@@ -1127,14 +1181,16 @@
             votoAtual = "";
 
 
-            inputs.forEach((input) => {
+            inputs.forEach(
+                (input) => {
 
-                votoAtual += input.value;
+                    votoAtual +=
+                        input.value;
 
-            });
+                }
+            );
 
         }
-
 
 
         // =========================================================
@@ -1160,7 +1216,6 @@
             );
 
         }
-
 
 
         // =========================================================
@@ -1205,7 +1260,6 @@
         }
 
 
-
         // =========================================================
         // MOSTRAR CANDIDATO
         // =========================================================
@@ -1236,9 +1290,8 @@
         }
 
 
-
         // =========================================================
-        // LIMPAR DADOS
+        // LIMPAR DADOS DO CANDIDATO
         // =========================================================
 
         function limparDadosCandidato() {
@@ -1251,7 +1304,6 @@
                 "—";
 
         }
-
 
 
         // =========================================================
@@ -1270,7 +1322,6 @@
                 );
 
         }
-
 
 
         // =========================================================
@@ -1307,16 +1358,14 @@
             fotoCandidato.onload =
                 () => {
 
-                    fotoCandidato.classList
-                        .remove(
-                            "hidden"
-                        );
+                    fotoCandidato.classList.remove(
+                        "hidden"
+                    );
 
 
-                    fotoPlaceholder.classList
-                        .add(
-                            "hidden"
-                        );
+                    fotoPlaceholder.classList.add(
+                        "hidden"
+                    );
 
                 };
 
@@ -1325,7 +1374,6 @@
                 caminhoFoto;
 
         }
-
 
 
         // =========================================================
@@ -1349,7 +1397,6 @@
             );
 
         }
-
 
 
         // =========================================================
@@ -1378,21 +1425,24 @@
         }
 
 
-
         // =========================================================
         // CONFIRMAR VOTO
         // =========================================================
 
         function confirmarVoto() {
 
-            if (votacaoFinalizada) {
+            if (
+                votacaoFinalizada
+            ) {
 
                 return;
 
             }
 
 
-            if (votoConfirmado) {
+            if (
+                votoConfirmado
+            ) {
 
                 return;
 
@@ -1465,21 +1515,24 @@
         }
 
 
-
         // =========================================================
         // VOTO EM BRANCO
         // =========================================================
 
         function votarBranco() {
 
-            if (votacaoFinalizada) {
+            if (
+                votacaoFinalizada
+            ) {
 
                 return;
 
             }
 
 
-            if (votoConfirmado) {
+            if (
+                votoConfirmado
+            ) {
 
                 return;
 
@@ -1517,7 +1570,6 @@
         }
 
 
-
         // =========================================================
         // DESABILITAR INPUTS
         // =========================================================
@@ -1530,14 +1582,15 @@
                 );
 
 
-            inputs.forEach((input) => {
+            inputs.forEach(
+                (input) => {
 
-                input.disabled = true;
+                    input.disabled = true;
 
-            });
+                }
+            );
 
         }
-
 
 
         // =========================================================
@@ -1589,11 +1642,8 @@
         }
 
 
-
         // =========================================================
         // FINALIZAR VOTAÇÃO
-        //
-        // AQUI É ONDE A IMAGEM "fim.png" APARECE.
         // =========================================================
 
         function finalizarVotacao() {
@@ -1618,17 +1668,16 @@
             esconderFoto();
 
 
-            definirMensagem("");
+            definirMensagem(
+                ""
+            );
 
 
-            // Mostra a imagem final
             telaFinal.classList.remove(
                 "hidden"
             );
 
 
-            // Depois de 2 segundos,
-            // inicia uma nova votação.
             setTimeout(() => {
 
                 reiniciarVotacao();
@@ -1638,14 +1687,12 @@
         }
 
 
-
         // =========================================================
         // REINICIAR VOTAÇÃO
         // =========================================================
 
         function reiniciarVotacao() {
 
-            // Esconde a imagem "fim.png"
             telaFinal.classList.add(
                 "hidden"
             );
@@ -1683,9 +1730,8 @@
         }
 
 
-
         // =========================================================
-        // TECLADO GLOBAL
+        // TECLADO FÍSICO
         // =========================================================
 
         document.addEventListener(
@@ -1740,7 +1786,6 @@
         );
 
 
-
         // =========================================================
         // INICIAR URNA
         // =========================================================
@@ -1756,7 +1801,6 @@
             votacaoFinalizada = false;
 
 
-            // Garante que a tela final esteja escondida
             telaFinal.classList.add(
                 "hidden"
             );
@@ -1783,12 +1827,271 @@
         }
 
 
-
         // =========================================================
-        // INÍCIO
+        // INICIAR
         // =========================================================
 
         iniciarUrna();
+
+
+        // =========================================================
+        // WEBSOCKET — CONEXÃO COM O CELULAR
+        // =========================================================
+
+        const protocolo =
+            location.protocol === "https:"
+                ? "wss:"
+                : "ws:";
+
+
+        const socket =
+            new WebSocket(
+                `${protocolo}//${location.host}`
+            );
+
+
+        socket.addEventListener(
+            "open",
+            () => {
+
+                console.log(
+                    "Visor conectado ao servidor."
+                );
+
+            }
+        );
+
+
+        socket.addEventListener(
+            "close",
+            () => {
+
+                console.log(
+                    "Conexão com o servidor encerrada."
+                );
+
+            }
+        );
+
+
+        socket.addEventListener(
+            "error",
+            (erro) => {
+
+                console.log(
+                    "Erro na conexão WebSocket:",
+                    erro
+                );
+
+            }
+        );
+
+
+        // =========================================================
+        // RECEBER COMANDO DO CELULAR
+        // =========================================================
+
+        socket.addEventListener(
+            "message",
+            (event) => {
+
+                try {
+
+                    const dados =
+                        JSON.parse(
+                            event.data
+                        );
+
+
+                    const comando =
+                        dados.comando;
+
+
+                    if (!comando) {
+
+                        return;
+
+                    }
+
+
+                    // -------------------------------
+                    // NÚMERO
+                    // -------------------------------
+
+                    if (
+                        comando.tipo ===
+                        "numero"
+                    ) {
+
+                        adicionarNumeroRemoto(
+                            comando.valor
+                        );
+
+                    }
+
+
+                    // -------------------------------
+                    // BRANCO
+                    // -------------------------------
+
+                    if (
+                        comando.tipo === "acao" &&
+                        comando.valor ===
+                        "branco"
+                    ) {
+
+                        votarBranco();
+
+                    }
+
+
+                    // -------------------------------
+                    // CORRIGE
+                    // -------------------------------
+
+                    if (
+                        comando.tipo === "acao" &&
+                        comando.valor ===
+                        "corrige"
+                    ) {
+
+                        limparTodosInputs();
+
+                    }
+
+
+                    // -------------------------------
+                    // CONFIRMA
+                    // -------------------------------
+
+                    if (
+                        comando.tipo === "acao" &&
+                        comando.valor ===
+                        "confirma"
+                    ) {
+
+                        confirmarVoto();
+
+                    }
+
+                } catch (erro) {
+
+                    console.log(
+                        "Comando inválido recebido:",
+                        erro
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =========================================================
+        // ADICIONAR NÚMERO RECEBIDO DO CELULAR
+        // =========================================================
+
+        function adicionarNumeroRemoto(
+            valor
+        ) {
+
+            if (
+                votacaoFinalizada
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                votoConfirmado
+            ) {
+
+                return;
+
+            }
+
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            let inputLivre = null;
+
+
+            for (
+                const input of inputs
+            ) {
+
+                if (
+                    input.value === "" &&
+                    !input.disabled
+                ) {
+
+                    inputLivre =
+                        input;
+
+                    break;
+
+                }
+
+            }
+
+
+            if (!inputLivre) {
+
+                return;
+
+            }
+
+
+            inputLivre.value =
+                String(valor);
+
+
+            marcarPreenchido(
+                inputLivre,
+                true
+            );
+
+
+            tocarSomClique();
+
+
+            atualizarVoto();
+
+
+            const ultimoInput =
+                inputLivre ===
+                inputs[
+                    inputs.length - 1
+                ];
+
+
+            if (!ultimoInput) {
+
+                const indice =
+                    Array.from(
+                        inputs
+                    ).indexOf(
+                        inputLivre
+                    );
+
+
+                inputs[
+                    indice + 1
+                ].focus();
+
+            } else {
+
+                verificarNumero();
+
+            }
+
+        }
 
 
     </script>

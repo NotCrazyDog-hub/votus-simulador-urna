@@ -413,23 +413,31 @@
          * O index.html precisará escutar esse localStorage
          * para receber os comandos.
          */
+        const protocolo = location.protocol === "https:" ? "wss:" : "ws:";
+
+        const socket = new WebSocket(
+            `${protocolo}//${location.host}`
+        );
+
+        socket.addEventListener("open", () => {
+            console.log("Teclado conectado à urna.");
+        });
+
+        socket.addEventListener("close", () => {
+            console.log("Conexão com a urna encerrada.");
+        });
 
         function enviarComando(comando) {
+            if (socket.readyState !== WebSocket.OPEN) {
+                console.log("Teclado ainda não conectado.");
+                return;
+            }
 
-            localStorage.setItem(
-
-                "votus-comando",
-
+            socket.send(
                 JSON.stringify({
-
-                    comando: comando,
-
-                    momento: Date.now()
-
+                    comando: comando
                 })
-
             );
-
         }
 
 
