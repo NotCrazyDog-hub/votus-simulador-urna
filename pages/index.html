@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -20,12 +21,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <title>Visor de Urna - Modelo</title>
+    <title>Visor de Urna - VOTUS</title>
 
 </head>
 
 
-<body class="min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-10 bg-[#efe8d2] font-['Inter']">
+<body
+    class="min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-10 bg-[#efe8d2] font-['Inter']"
+>
 
 
     <!-- =========================================================
@@ -127,7 +130,11 @@
 
 
                 <!-- =========================================
-                     NÚMERO
+                     VISOR DO NÚMERO
+                     
+                     IMPORTANTE:
+                     Estes campos são SOMENTE VISUAIS.
+                     O tablet não possui teclado.
                 ========================================== -->
 
                 <div
@@ -617,11 +624,11 @@
 
 
         // =========================================================
-        // CLASSE DOS INPUTS
+        // CLASSE DOS CAMPOS VISUAIS
         // =========================================================
 
         const CLASSE_INPUT_NUMERO =
-            "numero-input font-['Space_Mono'] w-11 h-14 sm:w-14 sm:h-16 md:w-16 md:h-20 border-2 border-[#1b623a] rounded-md text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#1b623a] outline-none transition-colors duration-150 focus:border-[#d9660d]";
+            "numero-input font-['Space_Mono'] w-11 h-14 sm:w-14 sm:h-16 md:w-16 md:h-20 border-2 border-[#1b623a] rounded-md text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#1b623a] outline-none bg-transparent cursor-default select-none";
 
 
         const CLASSES_PREENCHIDO = [
@@ -823,7 +830,10 @@
 
 
         // =========================================================
-        // CRIAR INPUTS
+        // CRIAR CAMPOS VISUAIS
+        //
+        // NÃO existe teclado no tablet.
+        // Os campos são somente para mostrar os números.
         // =========================================================
 
         function criarInputs() {
@@ -855,9 +865,13 @@
 
                 input.maxLength = 1;
 
-                input.inputMode = "numeric";
+                input.inputMode = "none";
 
                 input.autocomplete = "off";
+
+                input.readOnly = true;
+
+                input.tabIndex = -1;
 
                 input.className =
                     CLASSE_INPUT_NUMERO;
@@ -867,247 +881,7 @@
                     input
                 );
 
-
-                configurarInput(
-                    input,
-                    i,
-                    quantidade
-                );
-
             }
-
-
-            const primeiroInput =
-                elementoNumero.querySelector(
-                    ".numero-input"
-                );
-
-
-            if (primeiroInput) {
-
-                primeiroInput.focus();
-
-            }
-
-        }
-
-
-        // =========================================================
-        // CONFIGURAR INPUT
-        // =========================================================
-
-        function configurarInput(
-            input,
-            index,
-            quantidade
-        ) {
-
-            input.addEventListener(
-                "input",
-                () => {
-
-                    if (
-                        votacaoFinalizada
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    let valor =
-                        input.value
-                            .replace(/\D/g, "")
-                            .substring(0, 1);
-
-
-                    input.value =
-                        valor;
-
-
-                    marcarPreenchido(
-                        input,
-                        valor !== ""
-                    );
-
-
-                    if (
-                        valor !== ""
-                    ) {
-
-                        tocarSomClique();
-
-                        atualizarVoto();
-
-
-                        if (
-                            index <
-                            quantidade - 1
-                        ) {
-
-                            const inputs =
-                                elementoNumero
-                                    .querySelectorAll(
-                                        ".numero-input"
-                                    );
-
-
-                            inputs[
-                                index + 1
-                            ].focus();
-
-                        } else {
-
-                            verificarNumero();
-
-                        }
-
-                    }
-
-                }
-            );
-
-
-            input.addEventListener(
-                "keydown",
-                (event) => {
-
-                    if (
-                        votacaoFinalizada
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    if (
-                        event.key ===
-                        "Backspace"
-                    ) {
-
-                        event.preventDefault();
-
-                        limparTodosInputs();
-
-                        return;
-
-                    }
-
-
-                    if (
-                        event.key ===
-                        "Delete"
-                    ) {
-
-                        event.preventDefault();
-
-                        limparTodosInputs();
-
-                        return;
-
-                    }
-
-
-                    if (
-                        event.key === "."
-                    ) {
-
-                        event.preventDefault();
-
-                        limparTodosInputs();
-
-                        return;
-
-                    }
-
-
-                    if (
-                        event.key ===
-                        "Enter"
-                    ) {
-
-                        event.preventDefault();
-
-                        confirmarVoto();
-
-                        return;
-
-                    }
-
-
-                    if (
-                        event.key ===
-                        "+"
-                    ) {
-
-                        event.preventDefault();
-
-                        votarBranco();
-
-                        return;
-
-                    }
-
-
-                    if (
-                        event.key ===
-                        "ArrowLeft"
-                    ) {
-
-                        event.preventDefault();
-
-
-                        if (
-                            index > 0
-                        ) {
-
-                            const inputs =
-                                elementoNumero
-                                    .querySelectorAll(
-                                        ".numero-input"
-                                    );
-
-
-                            inputs[
-                                index - 1
-                            ].focus();
-
-                        }
-
-                    }
-
-
-                    if (
-                        event.key ===
-                        "ArrowRight"
-                    ) {
-
-                        event.preventDefault();
-
-
-                        if (
-                            index <
-                            quantidade - 1
-                        ) {
-
-                            const inputs =
-                                elementoNumero
-                                    .querySelectorAll(
-                                        ".numero-input"
-                                    );
-
-
-                            inputs[
-                                index + 1
-                            ].focus();
-
-                        }
-
-                    }
-
-                }
-            );
 
         }
 
@@ -1117,6 +891,15 @@
         // =========================================================
 
         function limparTodosInputs() {
+
+            if (
+                votacaoFinalizada
+            ) {
+
+                return;
+
+            }
+
 
             const inputs =
                 elementoNumero.querySelectorAll(
@@ -1153,15 +936,6 @@
             definirMensagem(
                 "Digite o número"
             );
-
-
-            if (
-                inputs.length > 0
-            ) {
-
-                inputs[0].focus();
-
-            }
 
         }
 
@@ -1284,7 +1058,7 @@
 
 
             definirMensagem(
-                "Confira os dados e pressione ENTER para confirmar."
+                "Confira os dados e pressione CONFIRMA para confirmar."
             );
 
         }
@@ -1571,7 +1345,7 @@
 
 
         // =========================================================
-        // DESABILITAR INPUTS
+        // DESABILITAR CAMPOS
         // =========================================================
 
         function desabilitarInputs() {
@@ -1731,111 +1505,7 @@
 
 
         // =========================================================
-        // TECLADO FÍSICO
-        // =========================================================
-
-        document.addEventListener(
-            "keydown",
-            (event) => {
-
-                const elementoAtivo =
-                    document.activeElement;
-
-
-                const focoEmInput =
-                    elementoAtivo &&
-                    elementoAtivo.classList
-                        .contains(
-                            "numero-input"
-                        );
-
-
-                if (focoEmInput) {
-
-                    return;
-
-                }
-
-
-                if (
-                    event.key ===
-                    "Enter"
-                ) {
-
-                    confirmarVoto();
-
-                    return;
-
-                }
-
-
-                if (
-                    event.key ===
-                    "+"
-                ) {
-
-                    event.preventDefault();
-
-                    votarBranco();
-
-                    return;
-
-                }
-
-            }
-        );
-
-
-        // =========================================================
-        // INICIAR URNA
-        // =========================================================
-
-        function iniciarUrna() {
-
-            cargoAtual = 0;
-
-            votoAtual = "";
-
-            votoConfirmado = false;
-
-            votacaoFinalizada = false;
-
-
-            telaFinal.classList.add(
-                "hidden"
-            );
-
-
-            elementoCargo.innerText =
-                cargos[0];
-
-
-            elementoInstrucao.innerText =
-                "Digite o número do candidato";
-
-
-            limparDadosCandidato();
-
-
-            definirMensagem(
-                "Digite o número"
-            );
-
-
-            criarInputs();
-
-        }
-
-
-        // =========================================================
-        // INICIAR
-        // =========================================================
-
-        iniciarUrna();
-
-
-        // =========================================================
-        // WEBSOCKET — CONEXÃO COM O CELULAR
+        // WEBSOCKET
         // =========================================================
 
         const protocolo =
@@ -1914,9 +1584,9 @@
                     }
 
 
-                    // -------------------------------
+                    // =============================================
                     // NÚMERO
-                    // -------------------------------
+                    // =============================================
 
                     if (
                         comando.tipo ===
@@ -1930,9 +1600,9 @@
                     }
 
 
-                    // -------------------------------
+                    // =============================================
                     // BRANCO
-                    // -------------------------------
+                    // =============================================
 
                     if (
                         comando.tipo === "acao" &&
@@ -1945,9 +1615,9 @@
                     }
 
 
-                    // -------------------------------
+                    // =============================================
                     // CORRIGE
-                    // -------------------------------
+                    // =============================================
 
                     if (
                         comando.tipo === "acao" &&
@@ -1960,9 +1630,9 @@
                     }
 
 
-                    // -------------------------------
+                    // =============================================
                     // CONFIRMA
-                    // -------------------------------
+                    // =============================================
 
                     if (
                         comando.tipo === "acao" &&
@@ -2071,21 +1741,7 @@
                 ];
 
 
-            if (!ultimoInput) {
-
-                const indice =
-                    Array.from(
-                        inputs
-                    ).indexOf(
-                        inputLivre
-                    );
-
-
-                inputs[
-                    indice + 1
-                ].focus();
-
-            } else {
+            if (ultimoInput) {
 
                 verificarNumero();
 
@@ -2094,9 +1750,61 @@
         }
 
 
+        // =========================================================
+        // INICIAR URNA
+        // =========================================================
+
+        function iniciarUrna() {
+
+            cargoAtual = 0;
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+            votacaoFinalizada = false;
+
+
+            telaFinal.classList.add(
+                "hidden"
+            );
+
+
+            elementoCargo.innerText =
+                cargos[0];
+
+
+            elementoInstrucao.innerText =
+                "Digite o número do candidato";
+
+
+            limparDadosCandidato();
+
+
+            esconderFoto();
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            criarInputs();
+
+        }
+
+
+        // =========================================================
+        // INICIAR
+        // =========================================================
+
+        iniciarUrna();
+
+
     </script>
 
 
 </body>
 
 </html>
+```
