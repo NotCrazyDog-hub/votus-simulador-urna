@@ -1,331 +1,483 @@
-```html
-<!DOCTYPE html>
+[<!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+```
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<link
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <title>VOTUS - Visor da Urna</title>
+<title>VOTUS - Visor da Urna</title>
 
-    <style>
+<style>
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    body {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    #visor {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+    }
+
+    .numero-input {
+        flex-shrink: 0;
+    }
+
+    @media (orientation: portrait) {
+
+        body::before {
+            content: "Gire o tablet para a posição horizontal";
+
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #efe8d2;
+            color: #1b623a;
+
+            font-family: Inter, sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+
+            text-align: center;
+            padding: 30px;
         }
 
-        body {
-            min-height: 100vh;
-            min-height: 100dvh;
+        #visor,
+        audio {
+            visibility: hidden;
         }
+    }
 
-        #visor {
-            width: 100vw;
-            height: 100vh;
-            height: 100dvh;
-        }
+</style>
+```
 
-        .numero-input {
-            flex-shrink: 0;
-        }
-
-        @media (orientation: portrait) {
-
-            body::before {
-                content: "Gire o tablet para a posição horizontal";
-
-                position: fixed;
-                inset: 0;
-                z-index: 9999;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                background: #efe8d2;
-                color: #1b623a;
-
-                font-family: Inter, sans-serif;
-                font-size: 20px;
-                font-weight: 800;
-
-                text-align: center;
-                padding: 30px;
-            }
-
-            #visor,
-            audio {
-                visibility: hidden;
-            }
-        }
-
-    </style>
 </head>
-
 
 <body class="bg-[#efe8d2] font-['Inter']">
 
-    <!-- VISOR -->
+```
+<!-- VISOR -->
 
-    <main
-        id="visor"
-        class="flex items-center justify-center p-1"
+<main
+    id="visor"
+    class="flex items-center justify-center p-1"
+>
+
+    <!-- CARTÃO DA URNA -->
+
+    <div
+        class="
+            relative
+            w-full
+            h-[94vh]
+            max-w-none
+            bg-[#f7f2df]
+            rounded-xl
+            md:rounded-2xl
+            px-6
+            py-4
+            md:px-8
+            md:py-5
+            shadow-[0_15px_40px_-15px_rgba(0,0,0,0.35)]
+            overflow-hidden
+        "
     >
 
-        <!-- CARTÃO DA URNA -->
+        <!-- TELA FINAL -->
+
+        <div
+            id="telaFinal"
+            class="
+                hidden
+                absolute
+                inset-0
+                z-[100]
+                bg-[#f7f0dc]
+            "
+        >
+
+            <img
+                src="../assets/images/fim.png"
+                alt="Votação encerrada"
+                class="w-full h-full object-cover"
+            >
+
+        </div>
+
+
+        <!-- CABEÇALHO -->
 
         <div
             class="
                 relative
-                w-full
-                h-[94vh]
-                max-w-none
-                bg-[#f7f2df]
-                rounded-xl
-                md:rounded-2xl
-                px-6
-                py-4
-                md:px-8
-                md:py-5
-                shadow-[0_15px_40px_-15px_rgba(0,0,0,0.35)]
-                overflow-hidden
+                z-10
+                flex
+                items-start
+                justify-between
+                gap-4
             "
         >
 
-            <!-- TELA FINAL -->
-
-            <div
-                id="telaFinal"
-                class="
-                    hidden
-                    absolute
-                    inset-0
-                    z-[100]
-                    bg-[#f7f0dc]
-                "
+            <img
+                src="../assets/images/Votus logo.png"
+                alt="VOTUS"
+                class="w-16 md:w-20 flex-shrink-0"
             >
 
-                <img
-                    src="../assets/images/fim.png"
-                    alt="Votação encerrada"
-                    class="w-full h-full object-cover"
-                >
-
+            <div
+                class="
+                    font-['Archivo_Black']
+                    text-[#e3a99a]
+                    text-[10px]
+                    md:text-xs
+                    uppercase
+                    tracking-[0.25em]
+                    text-right
+                "
+            >
+                Ilustrativo
             </div>
 
+        </div>
 
-            <!-- CABEÇALHO -->
 
-            <div
-                class="
-                    relative
-                    z-10
-                    flex
-                    items-start
-                    justify-between
-                    gap-4
-                "
-            >
+        <!-- CONTEÚDO -->
 
-                <img
-                    src="../assets/images/Votus logo.png"
-                    alt="VOTUS"
-                    class="w-16 md:w-20 flex-shrink-0"
-                >
+        <div
+            class="
+                relative
+                z-10
+                grid
+                grid-cols-[minmax(0,1fr)_300px]
+                lg:grid-cols-[minmax(0,1fr)_340px]
+                gap-6
+                lg:gap-10
+                mt-3
+                md:mt-5
+                h-[calc(100%-100px)]
+                items-center
+            "
+        >
+
+            <!-- INFORMAÇÕES -->
+
+            <div class="min-w-0">
 
                 <div
+                    id="cargo"
                     class="
                         font-['Archivo_Black']
-                        text-[#e3a99a]
-                        text-[10px]
-                        md:text-xs
+                        text-3xl
+                        md:text-4xl
+                        lg:text-5xl
+                        text-[#1b623a]
+                        leading-none
                         uppercase
-                        tracking-[0.25em]
-                        text-right
+                        break-words
                     "
                 >
-                    Ilustrativo
+                    Deputada(o) Federal
                 </div>
 
-            </div>
+
+                <div
+                    id="instrucao"
+                    class="
+                        mt-3
+                        text-xs
+                        md:text-sm
+                        font-bold
+                        uppercase
+                        tracking-wider
+                        text-[#d9660d]
+                    "
+                >
+                    Digite o número do candidato
+                </div>
 
 
-            <!-- CONTEÚDO -->
+                <!-- NÚMEROS -->
 
-            <div
-                class="
-                    relative
-                    z-10
-                    grid
-                    grid-cols-[minmax(0,1fr)_300px]
-                    lg:grid-cols-[minmax(0,1fr)_340px]
-                    gap-6
-                    lg:gap-10
-                    mt-3
-                    md:mt-5
-                    h-[calc(100%-100px)]
-                    items-center
-                "
-            >
+                <div
+                    id="numero"
+                    class="
+                        flex
+                        items-center
+                        gap-2
+                        md:gap-3
+                        mt-5
+                        min-h-[65px]
+                        md:min-h-[75px]
+                        flex-nowrap
+                    "
+                >
 
-                <!-- INFORMAÇÕES -->
-
-                <div class="min-w-0">
-
-                    <div
-                        id="cargo"
-                        class="
-                            font-['Archivo_Black']
-                            text-3xl
-                            md:text-4xl
-                            lg:text-5xl
-                            text-[#1b623a]
-                            leading-none
-                            uppercase
-                            break-words
-                        "
-                    >
-                        Deputada(o) Federal
-                    </div>
-
+                    <!-- 1º CAMPO -->
 
                     <div
-                        id="instrucao"
                         class="
-                            mt-3
-                            text-xs
-                            md:text-sm
+                            numero-input
+                            font-['Space_Mono']
+                            w-11
+                            h-14
+                            md:w-14
+                            md:h-16
+                            lg:w-16
+                            lg:h-20
+                            border-2
+                            border-[#1b623a]
+                            rounded-md
+                            text-2xl
+                            md:text-3xl
+                            lg:text-4xl
                             font-bold
-                            uppercase
-                            tracking-wider
-                            text-[#d9660d]
-                        "
-                    >
-                        Digite o número do candidato
-                    </div>
-
-
-                    <!-- NÚMEROS -->
-
-                    <div
-                        id="numero"
-                        class="
+                            text-center
+                            text-[#1b623a]
+                            bg-transparent
                             flex
                             items-center
-                            gap-2
-                            md:gap-3
-                            mt-5
-                            min-h-[65px]
-                            md:min-h-[75px]
+                            justify-center
+                            select-none
                         "
+                        data-valor=""
                     ></div>
 
 
-                    <!-- DADOS DO CANDIDATO -->
+                    <!-- 2º CAMPO -->
 
                     <div
-                        id="dadosCandidato"
                         class="
-                            mt-5
-                            pt-4
-                            border-t-2
-                            border-dashed
-                            border-[#1b623a]/30
-                            space-y-2
+                            numero-input
+                            font-['Space_Mono']
+                            w-11
+                            h-14
+                            md:w-14
+                            md:h-16
+                            lg:w-16
+                            lg:h-20
+                            border-2
+                            border-[#1b623a]
+                            rounded-md
+                            text-2xl
+                            md:text-3xl
+                            lg:text-4xl
+                            font-bold
+                            text-center
+                            text-[#1b623a]
+                            bg-transparent
+                            flex
+                            items-center
+                            justify-center
+                            select-none
                         "
-                    >
-
-                        <div class="text-sm md:text-base">
-
-                            <span class="font-bold text-[#1b623a]">
-                                Nome:
-                            </span>
-
-                            <span
-                                id="nomeCandidato"
-                                class="text-[#1b623a] ml-1"
-                            >
-                                —
-                            </span>
-
-                        </div>
+                        data-valor=""
+                    ></div>
 
 
-                        <div class="text-sm md:text-base">
+                    <!-- 3º CAMPO -->
 
-                            <span class="font-bold text-[#1b623a]">
-                                Partido:
-                            </span>
+                    <div
+                        class="
+                            numero-input
+                            font-['Space_Mono']
+                            w-11
+                            h-14
+                            md:w-14
+                            md:h-16
+                            lg:w-16
+                            lg:h-20
+                            border-2
+                            border-[#1b623a]
+                            rounded-md
+                            text-2xl
+                            md:text-3xl
+                            lg:text-4xl
+                            font-bold
+                            text-center
+                            text-[#1b623a]
+                            bg-transparent
+                            flex
+                            items-center
+                            justify-center
+                            select-none
+                        "
+                        data-valor=""
+                    ></div>
 
-                            <span
-                                id="partidoCandidato"
-                                class="text-[#1b623a] ml-1"
-                            >
-                                —
-                            </span>
 
-                        </div>
+                    <!-- 4º CAMPO -->
+
+                    <div
+                        class="
+                            numero-input
+                            font-['Space_Mono']
+                            w-11
+                            h-14
+                            md:w-14
+                            md:h-16
+                            lg:w-16
+                            lg:h-20
+                            border-2
+                            border-[#1b623a]
+                            rounded-md
+                            text-2xl
+                            md:text-3xl
+                            lg:text-4xl
+                            font-bold
+                            text-center
+                            text-[#1b623a]
+                            bg-transparent
+                            flex
+                            items-center
+                            justify-center
+                            select-none
+                        "
+                        data-valor=""
+                    ></div>
+
+                </div>
+
+
+                <!-- DADOS DO CANDIDATO -->
+
+                <div
+                    id="dadosCandidato"
+                    class="
+                        mt-5
+                        pt-4
+                        border-t-2
+                        border-dashed
+                        border-[#1b623a]/30
+                        space-y-2
+                    "
+                >
+
+                    <div class="text-sm md:text-base">
+
+                        <span class="font-bold text-[#1b623a]">
+                            Nome:
+                        </span>
+
+                        <span
+                            id="nomeCandidato"
+                            class="text-[#1b623a] ml-1"
+                        >
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="text-sm md:text-base">
+
+                        <span class="font-bold text-[#1b623a]">
+                            Partido:
+                        </span>
+
+                        <span
+                            id="partidoCandidato"
+                            class="text-[#1b623a] ml-1"
+                        >
+                            —
+                        </span>
 
                     </div>
 
                 </div>
 
+            </div>
 
-                <!-- FOTO -->
+
+            <!-- FOTO -->
+
+            <div
+                class="
+                    relative
+                    w-full
+                    aspect-square
+                    max-w-[300px]
+                    lg:max-w-[340px]
+                    mx-auto
+                "
+            >
+
+                <img
+                    src="../assets/images/textura1.png"
+                    class="
+                        absolute
+                        w-[55%]
+                        -bottom-[20%]
+                        -left-[35%]
+                        z-0
+                        pointer-events-none
+                        select-none
+                    "
+                    alt=""
+                >
+
+
+                <img
+                    src="../assets/images/textura2.png"
+                    class="
+                        absolute
+                        w-[100%]
+                        -top-[70%]
+                        -right-[60%]
+                        z-0
+                        pointer-events-none
+                        select-none
+                    "
+                    alt=""
+                >
+
 
                 <div
                     class="
                         relative
+                        z-10
                         w-full
-                        aspect-square
-                        max-w-[300px]
-                        lg:max-w-[340px]
-                        mx-auto
+                        h-full
                     "
                 >
 
                     <img
-                        src="../assets/images/textura1.png"
+                        src="../assets/images/Moldura.png"
                         class="
                             absolute
-                            w-[55%]
-                            -bottom-[20%]
-                            -left-[35%]
-                            z-0
-                            pointer-events-none
-                            select-none
-                        "
-                        alt=""
-                    >
-
-
-                    <img
-                        src="../assets/images/textura2.png"
-                        class="
-                            absolute
-                            w-[100%]
-                            -top-[70%]
-                            -right-[60%]
-                            z-0
+                            inset-0
+                            w-full
+                            h-full
                             pointer-events-none
                             select-none
                         "
@@ -335,195 +487,172 @@
 
                     <div
                         class="
-                            relative
-                            z-10
-                            w-full
-                            h-full
+                            absolute
+                            inset-[12%]
+                            rounded-sm
+                            overflow-hidden
                         "
                     >
 
                         <img
-                            src="../assets/images/Moldura.png"
+                            id="fotoCandidato"
                             class="
+                                hidden
                                 absolute
                                 inset-0
                                 w-full
                                 h-full
-                                pointer-events-none
-                                select-none
+                                object-cover
                             "
-                            alt=""
+                            alt="Foto do candidato"
                         >
 
 
                         <div
+                            id="fotoPlaceholder"
                             class="
-                                absolute
-                                inset-[12%]
-                                rounded-sm
-                                overflow-hidden
+                                w-full
+                                h-full
+                                flex
+                                items-center
+                                justify-center
                             "
                         >
 
                             <img
-                                id="fotoCandidato"
-                                class="
-                                    hidden
-                                    absolute
-                                    inset-0
-                                    w-full
-                                    h-full
-                                    object-cover
-                                "
-                                alt="Foto do candidato"
+                                src="../assets/images/Icon.png"
+                                alt=""
+                                class="h-16 md:h-20 lg:h-24"
                             >
-
-
-                            <div
-                                id="fotoPlaceholder"
-                                class="
-                                    w-full
-                                    h-full
-                                    flex
-                                    items-center
-                                    justify-center
-                                "
-                            >
-
-                                <img
-                                    src="../assets/images/Icon.png"
-                                    alt=""
-                                    class="h-16 md:h-20 lg:h-24"
-                                >
-
-                            </div>
 
                         </div>
 
                     </div>
 
-
-                    <img
-                        src="../assets/images/orelhao.png"
-                        class="
-                            absolute
-                            w-[80%]
-                            -top-[15%]
-                            -right-[40%]
-                            z-20
-                            pointer-events-none
-                            select-none
-                        "
-                        alt=""
-                    >
-
-                </div>
-
-            </div>
-
-
-            <!-- MENSAGEM -->
-
-            <div
-                id="mensagem"
-                class="
-                    absolute
-                    bottom-[58px]
-                    left-5
-                    right-5
-                    md:left-8
-                    md:right-8
-                    pt-3
-                    border-t-2
-                    border-[#7a0e0e]/30
-                    text-center
-                    text-sm
-                    md:text-base
-                    lg:text-lg
-                    font-extrabold
-                    uppercase
-                    tracking-wide
-                    text-[#3f4f45]
-                    transition-colors
-                    duration-300
-                    break-words
-                "
-            >
-                Digite o número
-            </div>
-
-
-            <!-- RODAPÉ -->
-
-            <div
-                class="
-                    absolute
-                    bottom-3
-                    left-5
-                    right-5
-                    md:left-8
-                    md:right-8
-                    flex
-                    items-center
-                    justify-between
-                    gap-3
-                "
-            >
-
-                <div
-                    class="
-                        font-['Archivo_Black']
-                        text-[#e3a99a]
-                        text-[10px]
-                        md:text-xs
-                        uppercase
-                        tracking-[0.25em]
-                    "
-                >
-                    Ilustrativo
                 </div>
 
 
                 <img
-                    src="../assets/images/Votus logo.png"
-                    alt="VOTUS"
-                    class="w-16 md:w-20 flex-shrink-0"
+                    src="../assets/images/orelhao.png"
+                    class="
+                        absolute
+                        w-[80%]
+                        -top-[15%]
+                        -right-[40%]
+                        z-20
+                        pointer-events-none
+                        select-none
+                    "
+                    alt=""
                 >
 
             </div>
 
         </div>
 
-    </main>
+
+        <!-- MENSAGEM -->
+
+        <div
+            id="mensagem"
+            class="
+                absolute
+                bottom-[58px]
+                left-5
+                right-5
+                md:left-8
+                md:right-8
+                pt-3
+                border-t-2
+                border-[#7a0e0e]/30
+                text-center
+                text-sm
+                md:text-base
+                lg:text-lg
+                font-extrabold
+                uppercase
+                tracking-wide
+                text-[#3f4f45]
+                transition-colors
+                duration-300
+                break-words
+            "
+        >
+            Digite o número
+        </div>
 
 
-    <!-- ÁUDIOS -->
+        <!-- RODAPÉ -->
 
-    <audio id="somClique" preload="auto">
-
-        <source
-            src="../assets/audios/Som-clicando.mp3"
-            type="audio/mpeg"
+        <div
+            class="
+                absolute
+                bottom-3
+                left-5
+                right-5
+                md:left-8
+                md:right-8
+                flex
+                items-center
+                justify-between
+                gap-3
+            "
         >
 
-    </audio>
+            <div
+                class="
+                    font-['Archivo_Black']
+                    text-[#e3a99a]
+                    text-[10px]
+                    md:text-xs
+                    uppercase
+                    tracking-[0.25em]
+                "
+            >
+                Ilustrativo
+            </div>
 
 
-    <audio id="somConfirmacao" preload="auto">
+            <img
+                src="../assets/images/Votus logo.png"
+                alt="VOTUS"
+                class="w-16 md:w-20 flex-shrink-0"
+            >
 
-        <source
-            src="../assets/audios/som-confirmacao.mp3"
-            type="audio/mpeg"
-        >
+        </div>
 
-    </audio>
+    </div>
+
+</main>
 
 
-    <!-- JAVASCRIPT DA URNA -->
+<!-- ÁUDIOS -->
 
-    <script src="../assets/js/urna.js"></script>
+<audio id="somClique" preload="auto">
+
+    <source
+        src="../assets/audios/Som-clicando.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="somConfirmacao" preload="auto">
+
+    <source
+        src="../assets/audios/som-confirmacao.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<!-- JAVASCRIPT DA URNA -->
+
+<script src="../assets/js/urna.js"></script>
+```
 
 </body>
 
 </html>
-```
