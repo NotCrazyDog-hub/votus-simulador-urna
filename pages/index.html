@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -85,18 +84,10 @@
 <body class="bg-[#efe8d2] font-['Inter']">
 
 
-    <!-- =====================================================
-         VISOR
-    ====================================================== -->
-
     <main
         id="visor"
         class="flex items-center justify-center p-1"
     >
-
-        <!-- =================================================
-             CARTÃO
-        ================================================== -->
 
         <div
             class="
@@ -117,10 +108,6 @@
         >
 
 
-            <!-- =============================================
-                 TELA FINAL
-            ============================================== -->
-
             <div
                 id="telaFinal"
                 class="
@@ -140,10 +127,6 @@
 
             </div>
 
-
-            <!-- =============================================
-                 CABEÇALHO
-            ============================================== -->
 
             <div
                 class="
@@ -179,10 +162,6 @@
             </div>
 
 
-            <!-- =============================================
-                 CONTEÚDO
-            ============================================== -->
-
             <div
                 class="
                     relative
@@ -200,14 +179,8 @@
             >
 
 
-                <!-- =========================================
-                     INFORMAÇÕES
-                ========================================== -->
-
                 <div class="min-w-0">
 
-
-                    <!-- CARGO -->
 
                     <div
                         id="cargo"
@@ -226,8 +199,6 @@
                     </div>
 
 
-                    <!-- INSTRUÇÃO -->
-
                     <div
                         id="instrucao"
                         class="
@@ -244,10 +215,6 @@
                     </div>
 
 
-                    <!-- =====================================
-                         NÚMEROS
-                    ====================================== -->
-
                     <div
                         id="numero"
                         class="
@@ -261,10 +228,6 @@
                         "
                     ></div>
 
-
-                    <!-- =====================================
-                         DADOS
-                    ====================================== -->
 
                     <div
                         id="dadosCandidato"
@@ -314,10 +277,6 @@
                 </div>
 
 
-                <!-- =========================================
-                     FOTO
-                ========================================== -->
-
                 <div
                     class="
                         relative
@@ -358,8 +317,6 @@
                         alt=""
                     >
 
-
-                    <!-- MOLDURA -->
 
                     <div
                         class="
@@ -450,10 +407,6 @@
             </div>
 
 
-            <!-- =============================================
-                 MENSAGEM
-            ============================================== -->
-
             <div
                 id="mensagem"
                 class="
@@ -483,10 +436,6 @@
             </div>
 
 
-            <!-- =============================================
-                 RODAPÉ
-            ============================================== -->
-
             <div
                 class="
                     absolute
@@ -515,7 +464,6 @@
                     Ilustrativo
                 </div>
 
-
                 <img
                     src="../assets/images/Votus logo.png"
                     alt="VOTUS"
@@ -529,19 +477,7 @@
     </main>
 
 
-    <!-- =====================================================
-         ÁUDIOS
-    ====================================================== -->
-
-    <audio id="somClique" preload="auto">
-
-        <source
-            src="../assets/audios/Som-clicando.mp3"
-            type="audio/mpeg"
-        >
-
-    </audio>
-
+    <!-- ÁUDIO DE CONFIRMAÇÃO -->
 
     <audio id="somConfirmacao" preload="auto">
 
@@ -553,9 +489,17 @@
     </audio>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
+    <!-- ÁUDIO FINAL -->
+
+    <audio id="somFinal" preload="auto">
+
+        <source
+            src="../assets/audios/som-final.mp3"
+            type="audio/mpeg"
+        >
+
+    </audio>
+
 
     <script>
 
@@ -675,8 +619,11 @@
         // =====================================================
 
         const candidatos = [
+
             ...chapa1,
+
             ...chapa2.candidatos
+
         ];
 
 
@@ -729,11 +676,18 @@
         const fotoPlaceholder =
             document.getElementById("fotoPlaceholder");
 
-        const somClique =
-            document.getElementById("somClique");
+
+        // ÁUDIO DE CONFIRMAÇÃO
 
         const somConfirmacao =
             document.getElementById("somConfirmacao");
+
+
+        // ÁUDIO FINAL
+
+        const somFinal =
+            document.getElementById("somFinal");
+
 
         const telaFinal =
             document.getElementById("telaFinal");
@@ -770,8 +724,10 @@
                 cargos[cargoAtual];
 
             return candidatos.filter(
+
                 candidato =>
                     candidato.cargo === cargo
+
             );
 
         }
@@ -787,7 +743,6 @@
                 cargos[cargoAtual];
 
 
-            // FEDERAL = 4 DÍGITOS
             if (
                 cargo === "Deputada(o) Federal"
             ) {
@@ -797,7 +752,6 @@
             }
 
 
-            // ESTADUAL = 5 DÍGITOS
             if (
                 cargo === "Deputada(o) Estadual"
             ) {
@@ -807,7 +761,6 @@
             }
 
 
-            // SENADORES = 3 DÍGITOS
             if (
                 cargo === "Senadora(or) - 1ª vaga" ||
                 cargo === "Senadora(or) - 2ª vaga"
@@ -818,7 +771,6 @@
             }
 
 
-            // GOVERNADORA = 2 DÍGITOS
             if (
                 cargo === "Governadora(or)"
             ) {
@@ -828,7 +780,6 @@
             }
 
 
-            // PRESIDENTE = 2 DÍGITOS
             if (
                 cargo === "Presidente da República"
             ) {
@@ -948,13 +899,16 @@
             );
 
 
-            tocarSomClique();
-
+            // ATUALIZA O NÚMERO.
+            // NÃO TOCA NENHUM ÁUDIO AQUI.
 
             atualizarVoto();
 
 
-            // Quando preencher todos os quadrinhos
+            // Quando todos os números forem
+            // digitados, apenas verifica o candidato.
+            // O áudio só será tocado no CONFIRMA.
+
             if (
                 votoAtual.length ===
                 getQuantidadeDigitos()
@@ -983,12 +937,14 @@
 
 
             inputs.forEach(
+
                 input => {
 
                     votoAtual +=
                         input.dataset.valor || "";
 
                 }
+
             );
 
         }
@@ -1024,6 +980,7 @@
                 0045 → 45
             */
 
+
             if (
                 cargo === "Deputada(o) Federal"
             ) {
@@ -1038,6 +995,7 @@
 
 
             return candidatosCargo.find(
+
                 candidato => {
 
                     return String(
@@ -1045,6 +1003,7 @@
                     ) === numeroDigitado;
 
                 }
+
             );
 
         }
@@ -1151,6 +1110,7 @@
                         "hidden"
                     );
 
+
                     fotoPlaceholder.classList.add(
                         "hidden"
                     );
@@ -1221,12 +1181,15 @@
 
 
             setTimeout(
+
                 () => {
 
                     limparTodosInputs();
 
                 },
+
                 1000
+
             );
 
         }
@@ -1254,6 +1217,7 @@
 
 
             inputs.forEach(
+
                 input => {
 
                     input.textContent = "";
@@ -1265,6 +1229,7 @@
                     );
 
                 }
+
             );
 
 
@@ -1315,10 +1280,15 @@
 
 
             elementoMensagem.classList.remove(
+
                 "text-[#3f4f45]",
+
                 "text-[#8d0801]",
+
                 "text-[#1b623a]",
+
                 "text-[#d9660d]"
+
             );
 
 
@@ -1330,7 +1300,9 @@
                     "text-[#8d0801]"
                 );
 
-            } else if (
+            }
+
+            else if (
                 tipo === "confirmado"
             ) {
 
@@ -1338,7 +1310,9 @@
                     "text-[#1b623a]"
                 );
 
-            } else if (
+            }
+
+            else if (
                 tipo === "branco"
             ) {
 
@@ -1346,28 +1320,15 @@
                     "text-[#d9660d]"
                 );
 
-            } else {
+            }
+
+            else {
 
                 elementoMensagem.classList.add(
                     "text-[#3f4f45]"
                 );
 
             }
-
-        }
-
-
-        // =====================================================
-        // SOM DE CLIQUE
-        // =====================================================
-
-        function tocarSomClique() {
-
-            somClique.currentTime = 0;
-
-            somClique
-                .play()
-                .catch(() => {});
 
         }
 
@@ -1380,7 +1341,24 @@
 
             somConfirmacao.currentTime = 0;
 
+
             somConfirmacao
+                .play()
+                .catch(() => {});
+
+        }
+
+
+        // =====================================================
+        // SOM FINAL DA VOTAÇÃO
+        // =====================================================
+
+        function tocarSomFinal() {
+
+            somFinal.currentTime = 0;
+
+
+            somFinal
                 .play()
                 .catch(() => {});
 
@@ -1411,6 +1389,8 @@
             esconderFoto();
 
 
+            // CONFIRMAÇÃO DO VOTO EM BRANCO
+
             tocarSomConfirmacao();
 
 
@@ -1424,12 +1404,15 @@
 
 
             setTimeout(
+
                 () => {
 
                     proximoCargo();
 
                 },
+
                 1200
+
             );
 
         }
@@ -1448,6 +1431,7 @@
 
 
             inputs.forEach(
+
                 input => {
 
                     input.classList.add(
@@ -1455,6 +1439,7 @@
                     );
 
                 }
+
             );
 
         }
@@ -1479,6 +1464,8 @@
             atualizarVoto();
 
 
+            // NÃO COMPLETOU TODOS OS NÚMEROS
+
             if (
                 votoAtual.length !==
                 getQuantidadeDigitos()
@@ -1493,9 +1480,14 @@
             }
 
 
+            // PROCURA O CANDIDATO
+
             const candidato =
                 encontrarCandidato();
 
+
+            // NÚMERO INVÁLIDO
+            // NÃO TOCA ÁUDIO
 
             if (!candidato) {
 
@@ -1509,8 +1501,12 @@
             }
 
 
+            // A PARTIR DAQUI O NÚMERO É VÁLIDO
+
             votoConfirmado = true;
 
+
+            // SOMENTE AGORA TOCA O ÁUDIO
 
             tocarSomConfirmacao();
 
@@ -1525,12 +1521,15 @@
 
 
             setTimeout(
+
                 () => {
 
                     proximoCargo();
 
                 },
+
                 1200
+
             );
 
         }
@@ -1586,12 +1585,17 @@
 
 
         // =====================================================
-        // FINALIZAR
+        // FINALIZAR VOTAÇÃO
         // =====================================================
 
         function finalizarVotacao() {
 
             votacaoFinalizada = true;
+
+
+            // ÁUDIO FINAL DA VOTAÇÃO
+
+            tocarSomFinal();
 
 
             elementoCargo.innerText =
@@ -1620,12 +1624,15 @@
 
 
             setTimeout(
+
                 () => {
 
                     reiniciarVotacao();
 
                 },
+
                 5000
+
             );
 
         }
@@ -1691,7 +1698,9 @@
 
 
         socket.addEventListener(
+
             "open",
+
             () => {
 
                 console.log(
@@ -1699,11 +1708,14 @@
                 );
 
             }
+
         );
 
 
         socket.addEventListener(
+
             "close",
+
             () => {
 
                 console.log(
@@ -1711,11 +1723,14 @@
                 );
 
             }
+
         );
 
 
         socket.addEventListener(
+
             "error",
+
             erro => {
 
                 console.log(
@@ -1724,6 +1739,7 @@
                 );
 
             }
+
         );
 
 
@@ -1732,7 +1748,9 @@
         // =====================================================
 
         socket.addEventListener(
+
             "message",
+
             event => {
 
                 try {
@@ -1754,6 +1772,8 @@
                     }
 
 
+                    // NÚMERO
+
                     if (
                         comando.tipo ===
                         "numero"
@@ -1766,6 +1786,8 @@
                     }
 
 
+                    // VOTO EM BRANCO
+
                     if (
                         comando.tipo === "acao" &&
                         comando.valor === "branco"
@@ -1775,6 +1797,8 @@
 
                     }
 
+
+                    // CORRIGE
 
                     if (
                         comando.tipo === "acao" &&
@@ -1786,6 +1810,8 @@
                     }
 
 
+                    // CONFIRMA
+
                     if (
                         comando.tipo === "acao" &&
                         comando.valor === "confirma"
@@ -1795,7 +1821,9 @@
 
                     }
 
-                } catch (erro) {
+                }
+
+                catch (erro) {
 
                     console.log(
                         "Comando inválido:",
@@ -1805,6 +1833,7 @@
                 }
 
             }
+
         );
 
 
@@ -1848,9 +1877,9 @@
 
         }
 
+
     </script>
 
 </body>
 
 </html>
-```
