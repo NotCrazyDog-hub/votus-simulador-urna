@@ -3,7 +3,7 @@ const chapa1 = [
         nome: "Russas ",
         cargo: "Deputada(o) Federal",
         Partido: "Vale do Jaguaribe",
-        numero: "25"    
+        numero: "1234"
     },
     {
         nome: "Limoeiro do Norte",
@@ -47,7 +47,7 @@ const chapa2 = {
             nome: "Aracati",
             cargo: "Deputada(o) Federal",
             Partido: "Litoral Leste",
-            numero: "45"
+            numero: "5678"
         },
         {
             nome: "Beberibe",

@@ -3,7 +3,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -21,7 +20,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <title>Visor de Urna - VOTUS</title>
+    <title>VOTUS - Visor da Urna</title>
 
     <style>
 
@@ -50,19 +49,25 @@
         }
 
         @media (orientation: portrait) {
+
             body::before {
                 content: "Gire o tablet para a posição horizontal";
+
                 position: fixed;
                 inset: 0;
                 z-index: 9999;
+
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
                 background: #efe8d2;
                 color: #1b623a;
+
                 font-family: Inter, sans-serif;
                 font-size: 20px;
                 font-weight: 800;
+
                 text-align: center;
                 padding: 30px;
             }
@@ -74,36 +79,30 @@
         }
 
     </style>
-
 </head>
 
 
 <body class="bg-[#efe8d2] font-['Inter']">
 
-
-    <!-- =========================================================
-         VISOR PRINCIPAL
-    ========================================================== -->
+    <!-- VISOR -->
 
     <main
         id="visor"
-        class="flex items-center justify-center p-3 md:p-5"
+        class="flex items-center justify-center p-1"
     >
 
-
-        <!-- =====================================================
-             CARTÃO DA URNA
-        ====================================================== -->
+        <!-- CARTÃO DA URNA -->
 
         <div
             class="
                 relative
                 w-full
-                h-full
+                h-[94vh]
+                max-w-none
                 bg-[#f7f2df]
                 rounded-xl
                 md:rounded-2xl
-                px-5
+                px-6
                 py-4
                 md:px-8
                 md:py-5
@@ -112,10 +111,7 @@
             "
         >
 
-
-            <!-- =================================================
-                 TELA FINAL
-            ================================================== -->
+            <!-- TELA FINAL -->
 
             <div
                 id="telaFinal"
@@ -137,9 +133,7 @@
             </div>
 
 
-            <!-- =================================================
-                 CABEÇALHO
-            ================================================== -->
+            <!-- CABEÇALHO -->
 
             <div
                 class="
@@ -153,9 +147,9 @@
             >
 
                 <img
-                    class="w-16 md:w-20 flex-shrink-0"
                     src="../assets/images/Votus logo.png"
-                    alt="Votus"
+                    alt="VOTUS"
+                    class="w-16 md:w-20 flex-shrink-0"
                 >
 
                 <div
@@ -175,9 +169,7 @@
             </div>
 
 
-            <!-- =================================================
-                 CONTEÚDO PRINCIPAL
-            ================================================== -->
+            <!-- CONTEÚDO -->
 
             <div
                 class="
@@ -195,15 +187,9 @@
                 "
             >
 
-
-                <!-- =============================================
-                     INFORMAÇÕES
-                ============================================== -->
+                <!-- INFORMAÇÕES -->
 
                 <div class="min-w-0">
-
-
-                    <!-- CARGO -->
 
                     <div
                         id="cargo"
@@ -222,8 +208,6 @@
                     </div>
 
 
-                    <!-- INSTRUÇÃO -->
-
                     <div
                         id="instrucao"
                         class="
@@ -240,9 +224,7 @@
                     </div>
 
 
-                    <!-- =========================================
-                         VISOR DOS NÚMEROS
-                    ========================================== -->
+                    <!-- NÚMEROS -->
 
                     <div
                         id="numero"
@@ -255,13 +237,10 @@
                             min-h-[65px]
                             md:min-h-[75px]
                         "
-                    >
-                    </div>
+                    ></div>
 
 
-                    <!-- =========================================
-                         DADOS DO CANDIDATO
-                    ========================================== -->
+                    <!-- DADOS DO CANDIDATO -->
 
                     <div
                         id="dadosCandidato"
@@ -311,9 +290,7 @@
                 </div>
 
 
-                <!-- =============================================
-                     FOTO
-                ============================================== -->
+                <!-- FOTO -->
 
                 <div
                     class="
@@ -325,9 +302,6 @@
                         mx-auto
                     "
                 >
-
-
-                    <!-- TEXTURA 1 -->
 
                     <img
                         src="../assets/images/textura1.png"
@@ -344,8 +318,6 @@
                     >
 
 
-                    <!-- TEXTURA 2 -->
-
                     <img
                         src="../assets/images/textura2.png"
                         class="
@@ -361,9 +333,14 @@
                     >
 
 
-                    <!-- MOLDURA -->
-
-                    <div class="relative z-10 w-full h-full">
+                    <div
+                        class="
+                            relative
+                            z-10
+                            w-full
+                            h-full
+                        "
+                    >
 
                         <img
                             src="../assets/images/Moldura.png"
@@ -388,8 +365,6 @@
                             "
                         >
 
-                            <!-- FOTO -->
-
                             <img
                                 id="fotoCandidato"
                                 class="
@@ -404,8 +379,6 @@
                             >
 
 
-                            <!-- PLACEHOLDER -->
-
                             <div
                                 id="fotoPlaceholder"
                                 class="
@@ -418,9 +391,9 @@
                             >
 
                                 <img
-                                    class="h-16 md:h-20 lg:h-24"
                                     src="../assets/images/Icon.png"
                                     alt=""
+                                    class="h-16 md:h-20 lg:h-24"
                                 >
 
                             </div>
@@ -429,8 +402,6 @@
 
                     </div>
 
-
-                    <!-- ORELHÃO -->
 
                     <img
                         src="../assets/images/orelhao.png"
@@ -451,9 +422,7 @@
             </div>
 
 
-            <!-- =================================================
-                 MENSAGEM
-            ================================================== -->
+            <!-- MENSAGEM -->
 
             <div
                 id="mensagem"
@@ -484,9 +453,7 @@
             </div>
 
 
-            <!-- =================================================
-                 RODAPÉ
-            ================================================== -->
+            <!-- RODAPÉ -->
 
             <div
                 class="
@@ -518,9 +485,9 @@
 
 
                 <img
-                    class="w-16 md:w-20 flex-shrink-0"
                     src="../assets/images/Votus logo.png"
-                    alt="Votus"
+                    alt="VOTUS"
+                    class="w-16 md:w-20 flex-shrink-0"
                 >
 
             </div>
@@ -530,9 +497,7 @@
     </main>
 
 
-    <!-- =========================================================
-         ÁUDIOS
-    ========================================================== -->
+    <!-- ÁUDIOS -->
 
     <audio id="somClique" preload="auto">
 
@@ -554,1259 +519,9 @@
     </audio>
 
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
+    <!-- JAVASCRIPT DA URNA -->
 
-    <script>
-
-
-        // =========================================================
-        // CHAPA 1
-        // =========================================================
-
-        const chapa1 = [
-
-            {
-                nome: "Russas",
-                cargo: "Deputada(o) Federal",
-                Partido: "Vale do Jaguaribe",
-                numero: "25"
-            },
-
-            {
-                nome: "Limoeiro do Norte",
-                cargo: "Deputada(o) Estadual",
-                Partido: "Vale do Jaguaribe",
-                numero: "31456"
-            },
-
-            {
-                nome: "Jaguaribe",
-                cargo: "Senadora(or) - 1ª vaga",
-                Partido: "Vale do Jaguaribe",
-                numero: "278"
-            },
-
-            {
-                nome: "Quixeré",
-                cargo: "Senadora(or) - 2ª vaga",
-                Partido: "Vale do Jaguaribe",
-                numero: "691"
-            },
-
-            {
-                nome: "Morada Nova",
-                cargo: "Governadora(or)",
-                Partido: "Vale do Jaguaribe",
-                numero: "37"
-            },
-
-            {
-                nome: "Tabuleiro do Norte",
-                cargo: "Presidente da República",
-                Partido: "Vale do Jaguaribe",
-                numero: "21"
-            }
-
-        ];
-
-
-        // =========================================================
-        // CHAPA 2
-        // =========================================================
-
-        const chapa2 = {
-
-            numero: 2,
-
-            nome: "LITORAL LESTE",
-
-            candidatos: [
-
-                {
-                    nome: "Aracati",
-                    cargo: "Deputada(o) Federal",
-                    Partido: "Litoral Leste",
-                    numero: "45"
-                },
-
-                {
-                    nome: "Beberibe",
-                    cargo: "Deputada(o) Estadual",
-                    Partido: "Litoral Leste",
-                    numero: "67891"
-                },
-
-                {
-                    nome: "Cascavel",
-                    cargo: "Senadora(or) - 1ª vaga",
-                    Partido: "Litoral Leste",
-                    numero: "542"
-                },
-
-                {
-                    nome: "Fortim",
-                    cargo: "Senadora(or) - 2ª vaga",
-                    Partido: "Litoral Leste",
-                    numero: "783"
-                },
-
-                {
-                    nome: "Icapuí",
-                    cargo: "Governadora(or)",
-                    Partido: "Litoral Leste",
-                    numero: "56"
-                },
-
-                {
-                    nome: "Pindoretama",
-                    cargo: "Presidente da República",
-                    Partido: "Litoral Leste",
-                    numero: "18"
-                }
-
-            ]
-
-        };
-
-
-        // =========================================================
-        // TODOS OS CANDIDATOS
-        // =========================================================
-
-        const candidatos = [
-
-            ...chapa1,
-
-            ...chapa2.candidatos
-
-        ];
-
-
-        // =========================================================
-        // CARGOS
-        // =========================================================
-
-        const cargos = [
-
-            "Deputada(o) Federal",
-
-            "Deputada(o) Estadual",
-
-            "Senadora(or) - 1ª vaga",
-
-            "Senadora(or) - 2ª vaga",
-
-            "Governadora(or)",
-
-            "Presidente da República"
-
-        ];
-
-
-        // =========================================================
-        // ELEMENTOS HTML
-        // =========================================================
-
-        const elementoCargo =
-            document.getElementById("cargo");
-
-        const elementoInstrucao =
-            document.getElementById("instrucao");
-
-        const elementoNumero =
-            document.getElementById("numero");
-
-        const elementoMensagem =
-            document.getElementById("mensagem");
-
-        const nomeCandidato =
-            document.getElementById("nomeCandidato");
-
-        const partidoCandidato =
-            document.getElementById("partidoCandidato");
-
-        const fotoCandidato =
-            document.getElementById("fotoCandidato");
-
-        const fotoPlaceholder =
-            document.getElementById("fotoPlaceholder");
-
-        const somClique =
-            document.getElementById("somClique");
-
-        const somConfirmacao =
-            document.getElementById("somConfirmacao");
-
-        const telaFinal =
-            document.getElementById("telaFinal");
-
-
-        // =========================================================
-        // VARIÁVEIS
-        // =========================================================
-
-        let cargoAtual = 0;
-
-        let votoAtual = "";
-
-        let votacaoFinalizada = false;
-
-        let votoConfirmado = false;
-
-
-        // =========================================================
-        // CLASSES
-        // =========================================================
-
-        const CLASSE_INPUT_NUMERO =
-            "numero-input font-['Space_Mono'] w-11 h-14 md:w-14 md:h-16 lg:w-16 lg:h-20 border-2 border-[#1b623a] rounded-md text-2xl md:text-3xl lg:text-4xl font-bold text-center text-[#1b623a] bg-transparent flex items-center justify-center select-none";
-
-
-        const CLASSES_PREENCHIDO = [
-
-            "bg-[#eaf6ee]"
-
-        ];
-
-
-        const CLASSES_MENSAGEM_TIPO = {
-
-            padrao: [
-
-                "text-[#3f4f45]"
-
-            ],
-
-            invalido: [
-
-                "text-[#8d0801]"
-
-            ],
-
-            confirmado: [
-
-                "text-[#1b623a]"
-
-            ],
-
-            branco: [
-
-                "text-[#d9660d]"
-
-            ]
-
-        };
-
-
-        // =========================================================
-        // CANDIDATOS DO CARGO
-        // =========================================================
-
-        function getCandidatosDoCargo() {
-
-            const cargo =
-                cargos[cargoAtual];
-
-            return candidatos.filter(
-                (candidato) => {
-
-                    return candidato.cargo === cargo;
-
-                }
-            );
-
-        }
-
-
-        // =========================================================
-        // QUANTIDADE DE DÍGITOS
-        // =========================================================
-
-        function getQuantidadeDigitos() {
-
-            const candidatosCargo =
-                getCandidatosDoCargo();
-
-            if (
-                candidatosCargo.length === 0
-            ) {
-
-                return 0;
-
-            }
-
-            return String(
-                candidatosCargo[0].numero
-            ).length;
-
-        }
-
-
-        // =========================================================
-        // SONS
-        // =========================================================
-
-        function tocarSomClique() {
-
-            somClique.currentTime = 0;
-
-            somClique.play().catch(() => {
-
-                console.log(
-                    "Não foi possível tocar o som de clique."
-                );
-
-            });
-
-        }
-
-
-        function tocarSomConfirmacao() {
-
-            somConfirmacao.currentTime = 0;
-
-            somConfirmacao.play().catch(() => {
-
-                console.log(
-                    "Não foi possível tocar o som de confirmação."
-                );
-
-            });
-
-        }
-
-
-        // =========================================================
-        // MENSAGEM
-        // =========================================================
-
-        function definirMensagem(
-            texto,
-            tipo = "padrao"
-        ) {
-
-            elementoMensagem.textContent =
-                texto;
-
-            Object.values(
-                CLASSES_MENSAGEM_TIPO
-            )
-            .flat()
-            .forEach((classe) => {
-
-                elementoMensagem.classList.remove(
-                    classe
-                );
-
-            });
-
-            const classesAlvo =
-                CLASSES_MENSAGEM_TIPO[tipo]
-                ||
-                CLASSES_MENSAGEM_TIPO.padrao;
-
-            classesAlvo.forEach((classe) => {
-
-                elementoMensagem.classList.add(
-                    classe
-                );
-
-            });
-
-        }
-
-
-        // =========================================================
-        // MARCAR NÚMERO PREENCHIDO
-        // =========================================================
-
-        function marcarPreenchido(
-            elemento,
-            preenchido
-        ) {
-
-            CLASSES_PREENCHIDO.forEach(
-                (classe) => {
-
-                    if (preenchido) {
-
-                        elemento.classList.add(
-                            classe
-                        );
-
-                    } else {
-
-                        elemento.classList.remove(
-                            classe
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        // =========================================================
-        // CRIAR CAMPOS VISUAIS
-        // =========================================================
-
-        function criarInputs() {
-
-            elementoNumero.innerHTML = "";
-
-            votoAtual = "";
-
-            votoConfirmado = false;
-
-            const quantidade =
-                getQuantidadeDigitos();
-
-            for (
-                let i = 0;
-                i < quantidade;
-                i++
-            ) {
-
-                const caixa =
-                    document.createElement("div");
-
-                caixa.className =
-                    CLASSE_INPUT_NUMERO;
-
-                caixa.dataset.valor = "";
-
-                elementoNumero.appendChild(
-                    caixa
-                );
-
-            }
-
-        }
-
-
-        // =========================================================
-        // LIMPAR CAMPOS
-        // =========================================================
-
-        function limparTodosInputs() {
-
-            if (
-                votacaoFinalizada
-            ) {
-
-                return;
-
-            }
-
-            const inputs =
-                elementoNumero.querySelectorAll(
-                    ".numero-input"
-                );
-
-            inputs.forEach(
-                (input) => {
-
-                    input.textContent = "";
-
-                    input.dataset.valor = "";
-
-                    marcarPreenchido(
-                        input,
-                        false
-                    );
-
-                }
-            );
-
-            votoAtual = "";
-
-            votoConfirmado = false;
-
-            limparDadosCandidato();
-
-            esconderFoto();
-
-            definirMensagem(
-                "Digite o número"
-            );
-
-        }
-
-
-        // =========================================================
-        // ATUALIZAR VOTO
-        // =========================================================
-
-        function atualizarVoto() {
-
-            const inputs =
-                elementoNumero.querySelectorAll(
-                    ".numero-input"
-                );
-
-            votoAtual = "";
-
-            inputs.forEach(
-                (input) => {
-
-                    votoAtual +=
-                        input.dataset.valor || "";
-
-                }
-            );
-
-        }
-
-
-        // =========================================================
-        // ENCONTRAR CANDIDATO
-        // =========================================================
-
-        function encontrarCandidato() {
-
-            const candidatosCargo =
-                getCandidatosDoCargo();
-
-            return candidatosCargo.find(
-                (candidato) => {
-
-                    return String(
-                        candidato.numero
-                    ) === String(
-                        votoAtual
-                    );
-
-                }
-            );
-
-        }
-
-
-        // =========================================================
-        // VERIFICAR NÚMERO
-        // =========================================================
-
-        function verificarNumero() {
-
-            atualizarVoto();
-
-            const quantidade =
-                getQuantidadeDigitos();
-
-            if (
-                votoAtual.length !==
-                quantidade
-            ) {
-
-                return;
-
-            }
-
-            const candidato =
-                encontrarCandidato();
-
-            if (candidato) {
-
-                mostrarCandidato(
-                    candidato
-                );
-
-            } else {
-
-                mostrarNumeroInvalido();
-
-            }
-
-        }
-
-
-        // =========================================================
-        // MOSTRAR CANDIDATO
-        // =========================================================
-
-        function mostrarCandidato(
-            candidato
-        ) {
-
-            nomeCandidato.innerText =
-                (candidato.nome || "")
-                    .trim();
-
-            partidoCandidato.innerText =
-                candidato.Partido ||
-                "—";
-
-            mostrarFoto(
-                candidato
-            );
-
-            definirMensagem(
-                "Confira os dados e pressione CONFIRMA para confirmar."
-            );
-
-        }
-
-
-        // =========================================================
-        // LIMPAR DADOS
-        // =========================================================
-
-        function limparDadosCandidato() {
-
-            nomeCandidato.innerText =
-                "—";
-
-            partidoCandidato.innerText =
-                "—";
-
-        }
-
-
-        // =========================================================
-        // REMOVER ACENTOS
-        // =========================================================
-
-        function removerAcentos(
-            texto
-        ) {
-
-            return texto
-                .normalize("NFD")
-                .replace(
-                    /[\u0300-\u036f]/g,
-                    ""
-                );
-
-        }
-
-
-        // =========================================================
-        // MOSTRAR FOTO
-        // =========================================================
-
-        function mostrarFoto(
-            candidato
-        ) {
-
-            const nomeArquivo =
-                removerAcentos(
-                    (candidato.nome || "")
-                        .trim()
-                );
-
-            const caminhoFoto =
-                "../assets/images/" +
-                encodeURIComponent(
-                    nomeArquivo
-                ) +
-                ".png";
-
-            fotoCandidato.onerror =
-                () => {
-
-                    esconderFoto();
-
-                };
-
-            fotoCandidato.onload =
-                () => {
-
-                    fotoCandidato.classList.remove(
-                        "hidden"
-                    );
-
-                    fotoPlaceholder.classList.add(
-                        "hidden"
-                    );
-
-                };
-
-            fotoCandidato.src =
-                caminhoFoto;
-
-        }
-
-
-        // =========================================================
-        // ESCONDER FOTO
-        // =========================================================
-
-        function esconderFoto() {
-
-            fotoCandidato.classList.add(
-                "hidden"
-            );
-
-            fotoCandidato.removeAttribute(
-                "src"
-            );
-
-            fotoPlaceholder.classList.remove(
-                "hidden"
-            );
-
-        }
-
-
-        // =========================================================
-        // NÚMERO INVÁLIDO
-        // =========================================================
-
-        function mostrarNumeroInvalido() {
-
-            limparDadosCandidato();
-
-            esconderFoto();
-
-            definirMensagem(
-                "✕ NÚMERO INVÁLIDO",
-                "invalido"
-            );
-
-            setTimeout(() => {
-
-                limparTodosInputs();
-
-            }, 1000);
-
-        }
-
-
-        // =========================================================
-        // CONFIRMAR VOTO
-        // =========================================================
-
-        function confirmarVoto() {
-
-            if (
-                votacaoFinalizada
-            ) {
-
-                return;
-
-            }
-
-            if (
-                votoConfirmado
-            ) {
-
-                return;
-
-            }
-
-            atualizarVoto();
-
-            const quantidade =
-                getQuantidadeDigitos();
-
-            if (
-                votoAtual.length !==
-                quantidade
-            ) {
-
-                definirMensagem(
-                    "Digite todos os números."
-                );
-
-                return;
-
-            }
-
-            const candidato =
-                encontrarCandidato();
-
-            if (!candidato) {
-
-                definirMensagem(
-                    "✕ NÚMERO INVÁLIDO",
-                    "invalido"
-                );
-
-                return;
-
-            }
-
-            votoConfirmado = true;
-
-            mostrarCandidato(
-                candidato
-            );
-
-            tocarSomConfirmacao();
-
-            definirMensagem(
-                "✓ VOTO CONFIRMADO",
-                "confirmado"
-            );
-
-            desabilitarInputs();
-
-            setTimeout(() => {
-
-                proximoCargo();
-
-            }, 1200);
-
-        }
-
-
-        // =========================================================
-        // VOTO EM BRANCO
-        // =========================================================
-
-        function votarBranco() {
-
-            if (
-                votacaoFinalizada
-            ) {
-
-                return;
-
-            }
-
-            if (
-                votoConfirmado
-            ) {
-
-                return;
-
-            }
-
-            votoConfirmado = true;
-
-            votoAtual = "BRANCO";
-
-            limparDadosCandidato();
-
-            esconderFoto();
-
-            tocarSomConfirmacao();
-
-            definirMensagem(
-                "▢ VOTO EM BRANCO CONFIRMADO",
-                "branco"
-            );
-
-            desabilitarInputs();
-
-            setTimeout(() => {
-
-                proximoCargo();
-
-            }, 1200);
-
-        }
-
-
-        // =========================================================
-        // DESABILITAR CAMPOS
-        // =========================================================
-
-        function desabilitarInputs() {
-
-            const inputs =
-                elementoNumero.querySelectorAll(
-                    ".numero-input"
-                );
-
-            inputs.forEach(
-                (input) => {
-
-                    input.classList.add(
-                        "opacity-60"
-                    );
-
-                }
-            );
-
-        }
-
-
-        // =========================================================
-        // PRÓXIMO CARGO
-        // =========================================================
-
-        function proximoCargo() {
-
-            cargoAtual++;
-
-            if (
-                cargoAtual >=
-                cargos.length
-            ) {
-
-                finalizarVotacao();
-
-                return;
-
-            }
-
-            votoAtual = "";
-
-            votoConfirmado = false;
-
-            limparDadosCandidato();
-
-            esconderFoto();
-
-            elementoCargo.innerText =
-                cargos[cargoAtual];
-
-            elementoInstrucao.innerText =
-                "Digite o número do candidato";
-
-            definirMensagem(
-                "Digite o número"
-            );
-
-            criarInputs();
-
-        }
-
-
-        // =========================================================
-        // FINALIZAR VOTAÇÃO
-        // =========================================================
-
-        function finalizarVotacao() {
-
-            votacaoFinalizada = true;
-
-            elementoCargo.innerText =
-                "VOTAÇÃO ENCERRADA";
-
-            elementoInstrucao.innerText =
-                "Obrigado por votar";
-
-            elementoNumero.innerHTML =
-                "";
-
-            limparDadosCandidato();
-
-            esconderFoto();
-
-            definirMensagem(
-                ""
-            );
-
-            telaFinal.classList.remove(
-                "hidden"
-            );
-
-            setTimeout(() => {
-
-                reiniciarVotacao();
-
-            }, 2000);
-
-        }
-
-
-        // =========================================================
-        // REINICIAR VOTAÇÃO
-        // =========================================================
-
-        function reiniciarVotacao() {
-
-            telaFinal.classList.add(
-                "hidden"
-            );
-
-            cargoAtual = 0;
-
-            votoAtual = "";
-
-            votoConfirmado = false;
-
-            votacaoFinalizada = false;
-
-            limparDadosCandidato();
-
-            esconderFoto();
-
-            elementoCargo.innerText =
-                cargos[0];
-
-            elementoInstrucao.innerText =
-                "Digite o número do candidato";
-
-            definirMensagem(
-                "Digite o número"
-            );
-
-            criarInputs();
-
-        }
-
-
-        // =========================================================
-        // WEBSOCKET
-        // =========================================================
-
-        const protocolo =
-            location.protocol === "https:"
-                ? "wss:"
-                : "ws:";
-
-
-        const socket =
-            new WebSocket(
-                `${protocolo}//${location.host}`
-            );
-
-
-        socket.addEventListener(
-            "open",
-            () => {
-
-                console.log(
-                    "Visor conectado ao servidor."
-                );
-
-            }
-        );
-
-
-        socket.addEventListener(
-            "close",
-            () => {
-
-                console.log(
-                    "Conexão com o servidor encerrada."
-                );
-
-            }
-        );
-
-
-        socket.addEventListener(
-            "error",
-            (erro) => {
-
-                console.log(
-                    "Erro na conexão WebSocket:",
-                    erro
-                );
-
-            }
-        );
-
-
-        // =========================================================
-        // RECEBER COMANDO DO CELULAR
-        // =========================================================
-
-        socket.addEventListener(
-            "message",
-            (event) => {
-
-                try {
-
-                    const dados =
-                        JSON.parse(
-                            event.data
-                        );
-
-                    const comando =
-                        dados.comando;
-
-                    if (!comando) {
-
-                        return;
-
-                    }
-
-
-                    if (
-                        comando.tipo ===
-                        "numero"
-                    ) {
-
-                        adicionarNumeroRemoto(
-                            comando.valor
-                        );
-
-                    }
-
-
-                    if (
-                        comando.tipo === "acao" &&
-                        comando.valor ===
-                        "branco"
-                    ) {
-
-                        votarBranco();
-
-                    }
-
-
-                    if (
-                        comando.tipo === "acao" &&
-                        comando.valor ===
-                        "corrige"
-                    ) {
-
-                        limparTodosInputs();
-
-                    }
-
-
-                    if (
-                        comando.tipo === "acao" &&
-                        comando.valor ===
-                        "confirma"
-                    ) {
-
-                        confirmarVoto();
-
-                    }
-
-                } catch (erro) {
-
-                    console.log(
-                        "Comando inválido recebido:",
-                        erro
-                    );
-
-                }
-
-            }
-        );
-
-
-        // =========================================================
-        // ADICIONAR NÚMERO RECEBIDO DO CELULAR
-        // =========================================================
-
-        function adicionarNumeroRemoto(
-            valor
-        ) {
-
-            if (
-                votacaoFinalizada
-            ) {
-
-                return;
-
-            }
-
-            if (
-                votoConfirmado
-            ) {
-
-                return;
-
-            }
-
-            const inputs =
-                elementoNumero.querySelectorAll(
-                    ".numero-input"
-                );
-
-            let inputLivre = null;
-
-            for (
-                const input of inputs
-            ) {
-
-                if (
-                    input.dataset.valor === ""
-                ) {
-
-                    inputLivre =
-                        input;
-
-                    break;
-
-                }
-
-            }
-
-            if (!inputLivre) {
-
-                return;
-
-            }
-
-            inputLivre.dataset.valor =
-                String(valor);
-
-            inputLivre.textContent =
-                String(valor);
-
-            marcarPreenchido(
-                inputLivre,
-                true
-            );
-
-            tocarSomClique();
-
-            atualizarVoto();
-
-            const ultimoInput =
-                inputLivre ===
-                inputs[
-                    inputs.length - 1
-                ];
-
-            if (ultimoInput) {
-
-                verificarNumero();
-
-            }
-
-        }
-
-
-        // =========================================================
-        // INICIAR URNA
-        // =========================================================
-
-        function iniciarUrna() {
-
-            cargoAtual = 0;
-
-            votoAtual = "";
-
-            votoConfirmado = false;
-
-            votacaoFinalizada = false;
-
-            telaFinal.classList.add(
-                "hidden"
-            );
-
-            elementoCargo.innerText =
-                cargos[0];
-
-            elementoInstrucao.innerText =
-                "Digite o número do candidato";
-
-            limparDadosCandidato();
-
-            esconderFoto();
-
-            definirMensagem(
-                "Digite o número"
-            );
-
-            criarInputs();
-
-        }
-
-
-        // =========================================================
-        // INICIAR
-        // =========================================================
-
-        iniciarUrna();
-
-    </script>
-
+    <script src="../assets/js/urna.js"></script>
 
 </body>
 
