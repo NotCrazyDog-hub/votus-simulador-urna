@@ -1,529 +1,311 @@
-[<!DOCTYPE html>
-
+```html
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
 
-```
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-<title>VOTUS - Visor da Urna</title>
+    <title>VOTUS - Visor da Urna</title>
 
-<style>
+    <style>
 
-    html,
-    body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    body {
-        min-height: 100vh;
-        min-height: 100dvh;
-    }
-
-    #visor {
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-    }
-
-    .numero-input {
-        flex-shrink: 0;
-    }
-
-    @media (orientation: portrait) {
-
-        body::before {
-            content: "Gire o tablet para a posição horizontal";
-
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background: #efe8d2;
-            color: #1b623a;
-
-            font-family: Inter, sans-serif;
-            font-size: 20px;
-            font-weight: 800;
-
-            text-align: center;
-            padding: 30px;
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
 
-        #visor,
-        audio {
-            visibility: hidden;
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
         }
-    }
 
-</style>
-```
+        #visor {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+        }
 
+        .numero-input {
+            flex-shrink: 0;
+        }
+
+        @media (orientation: portrait) {
+
+            body::before {
+                content: "Gire o tablet para a posição horizontal";
+
+                position: fixed;
+                inset: 0;
+                z-index: 9999;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background: #efe8d2;
+                color: #1b623a;
+
+                font-family: Inter, sans-serif;
+                font-size: 20px;
+                font-weight: 800;
+
+                text-align: center;
+                padding: 30px;
+            }
+
+            #visor,
+            audio {
+                visibility: hidden;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body class="bg-[#efe8d2] font-['Inter']">
 
-```
-<!-- VISOR -->
 
-<main
-    id="visor"
-    class="flex items-center justify-center p-1"
->
+    <!-- =====================================================
+         VISOR
+    ====================================================== -->
 
-    <!-- CARTÃO DA URNA -->
-
-    <div
-        class="
-            relative
-            w-full
-            h-[94vh]
-            max-w-none
-            bg-[#f7f2df]
-            rounded-xl
-            md:rounded-2xl
-            px-6
-            py-4
-            md:px-8
-            md:py-5
-            shadow-[0_15px_40px_-15px_rgba(0,0,0,0.35)]
-            overflow-hidden
-        "
+    <main
+        id="visor"
+        class="flex items-center justify-center p-1"
     >
 
-        <!-- TELA FINAL -->
-
-        <div
-            id="telaFinal"
-            class="
-                hidden
-                absolute
-                inset-0
-                z-[100]
-                bg-[#f7f0dc]
-            "
-        >
-
-            <img
-                src="../assets/images/fim.png"
-                alt="Votação encerrada"
-                class="w-full h-full object-cover"
-            >
-
-        </div>
-
-
-        <!-- CABEÇALHO -->
+        <!-- =================================================
+             CARTÃO
+        ================================================== -->
 
         <div
             class="
                 relative
-                z-10
-                flex
-                items-start
-                justify-between
-                gap-4
+                w-full
+                h-[94vh]
+                max-w-none
+                bg-[#f7f2df]
+                rounded-xl
+                md:rounded-2xl
+                px-6
+                py-4
+                md:px-8
+                md:py-5
+                shadow-[0_15px_40px_-15px_rgba(0,0,0,0.35)]
+                overflow-hidden
             "
         >
 
-            <img
-                src="../assets/images/Votus logo.png"
-                alt="VOTUS"
-                class="w-16 md:w-20 flex-shrink-0"
-            >
+
+            <!-- =============================================
+                 TELA FINAL
+            ============================================== -->
 
             <div
+                id="telaFinal"
                 class="
-                    font-['Archivo_Black']
-                    text-[#e3a99a]
-                    text-[10px]
-                    md:text-xs
-                    uppercase
-                    tracking-[0.25em]
-                    text-right
+                    hidden
+                    absolute
+                    inset-0
+                    z-[100]
+                    bg-[#f7f0dc]
                 "
             >
-                Ilustrativo
-            </div>
 
-        </div>
-
-
-        <!-- CONTEÚDO -->
-
-        <div
-            class="
-                relative
-                z-10
-                grid
-                grid-cols-[minmax(0,1fr)_300px]
-                lg:grid-cols-[minmax(0,1fr)_340px]
-                gap-6
-                lg:gap-10
-                mt-3
-                md:mt-5
-                h-[calc(100%-100px)]
-                items-center
-            "
-        >
-
-            <!-- INFORMAÇÕES -->
-
-            <div class="min-w-0">
-
-                <div
-                    id="cargo"
-                    class="
-                        font-['Archivo_Black']
-                        text-3xl
-                        md:text-4xl
-                        lg:text-5xl
-                        text-[#1b623a]
-                        leading-none
-                        uppercase
-                        break-words
-                    "
+                <img
+                    src="../assets/images/fim.png"
+                    alt="Votação encerrada"
+                    class="w-full h-full object-cover"
                 >
-                    Deputada(o) Federal
-                </div>
-
-
-                <div
-                    id="instrucao"
-                    class="
-                        mt-3
-                        text-xs
-                        md:text-sm
-                        font-bold
-                        uppercase
-                        tracking-wider
-                        text-[#d9660d]
-                    "
-                >
-                    Digite o número do candidato
-                </div>
-
-
-                <!-- NÚMEROS -->
-
-                <div
-                    id="numero"
-                    class="
-                        flex
-                        items-center
-                        gap-2
-                        md:gap-3
-                        mt-5
-                        min-h-[65px]
-                        md:min-h-[75px]
-                        flex-nowrap
-                    "
-                >
-
-                    <!-- 1º CAMPO -->
-
-                    <div
-                        class="
-                            numero-input
-                            font-['Space_Mono']
-                            w-11
-                            h-14
-                            md:w-14
-                            md:h-16
-                            lg:w-16
-                            lg:h-20
-                            border-2
-                            border-[#1b623a]
-                            rounded-md
-                            text-2xl
-                            md:text-3xl
-                            lg:text-4xl
-                            font-bold
-                            text-center
-                            text-[#1b623a]
-                            bg-transparent
-                            flex
-                            items-center
-                            justify-center
-                            select-none
-                        "
-                        data-valor=""
-                    ></div>
-
-
-                    <!-- 2º CAMPO -->
-
-                    <div
-                        class="
-                            numero-input
-                            font-['Space_Mono']
-                            w-11
-                            h-14
-                            md:w-14
-                            md:h-16
-                            lg:w-16
-                            lg:h-20
-                            border-2
-                            border-[#1b623a]
-                            rounded-md
-                            text-2xl
-                            md:text-3xl
-                            lg:text-4xl
-                            font-bold
-                            text-center
-                            text-[#1b623a]
-                            bg-transparent
-                            flex
-                            items-center
-                            justify-center
-                            select-none
-                        "
-                        data-valor=""
-                    ></div>
-
-
-                    <!-- 3º CAMPO -->
-
-                    <div
-                        class="
-                            numero-input
-                            font-['Space_Mono']
-                            w-11
-                            h-14
-                            md:w-14
-                            md:h-16
-                            lg:w-16
-                            lg:h-20
-                            border-2
-                            border-[#1b623a]
-                            rounded-md
-                            text-2xl
-                            md:text-3xl
-                            lg:text-4xl
-                            font-bold
-                            text-center
-                            text-[#1b623a]
-                            bg-transparent
-                            flex
-                            items-center
-                            justify-center
-                            select-none
-                        "
-                        data-valor=""
-                    ></div>
-
-
-                    <!-- 4º CAMPO -->
-
-                    <div
-                        class="
-                            numero-input
-                            font-['Space_Mono']
-                            w-11
-                            h-14
-                            md:w-14
-                            md:h-16
-                            lg:w-16
-                            lg:h-20
-                            border-2
-                            border-[#1b623a]
-                            rounded-md
-                            text-2xl
-                            md:text-3xl
-                            lg:text-4xl
-                            font-bold
-                            text-center
-                            text-[#1b623a]
-                            bg-transparent
-                            flex
-                            items-center
-                            justify-center
-                            select-none
-                        "
-                        data-valor=""
-                    ></div>
-
-                </div>
-
-
-                <!-- DADOS DO CANDIDATO -->
-
-                <div
-                    id="dadosCandidato"
-                    class="
-                        mt-5
-                        pt-4
-                        border-t-2
-                        border-dashed
-                        border-[#1b623a]/30
-                        space-y-2
-                    "
-                >
-
-                    <div class="text-sm md:text-base">
-
-                        <span class="font-bold text-[#1b623a]">
-                            Nome:
-                        </span>
-
-                        <span
-                            id="nomeCandidato"
-                            class="text-[#1b623a] ml-1"
-                        >
-                            —
-                        </span>
-
-                    </div>
-
-
-                    <div class="text-sm md:text-base">
-
-                        <span class="font-bold text-[#1b623a]">
-                            Partido:
-                        </span>
-
-                        <span
-                            id="partidoCandidato"
-                            class="text-[#1b623a] ml-1"
-                        >
-                            —
-                        </span>
-
-                    </div>
-
-                </div>
 
             </div>
 
 
-            <!-- FOTO -->
+            <!-- =============================================
+                 CABEÇALHO
+            ============================================== -->
 
             <div
                 class="
                     relative
-                    w-full
-                    aspect-square
-                    max-w-[300px]
-                    lg:max-w-[340px]
-                    mx-auto
+                    z-10
+                    flex
+                    items-start
+                    justify-between
+                    gap-4
                 "
             >
 
                 <img
-                    src="../assets/images/textura1.png"
-                    class="
-                        absolute
-                        w-[55%]
-                        -bottom-[20%]
-                        -left-[35%]
-                        z-0
-                        pointer-events-none
-                        select-none
-                    "
-                    alt=""
+                    src="../assets/images/Votus logo.png"
+                    alt="VOTUS"
+                    class="w-16 md:w-20 flex-shrink-0"
                 >
-
-
-                <img
-                    src="../assets/images/textura2.png"
-                    class="
-                        absolute
-                        w-[100%]
-                        -top-[70%]
-                        -right-[60%]
-                        z-0
-                        pointer-events-none
-                        select-none
-                    "
-                    alt=""
-                >
-
 
                 <div
                     class="
-                        relative
-                        z-10
-                        w-full
-                        h-full
+                        font-['Archivo_Black']
+                        text-[#e3a99a]
+                        text-[10px]
+                        md:text-xs
+                        uppercase
+                        tracking-[0.25em]
+                        text-right
                     "
                 >
+                    Ilustrativo
+                </div>
 
-                    <img
-                        src="../assets/images/Moldura.png"
-                        class="
-                            absolute
-                            inset-0
-                            w-full
-                            h-full
-                            pointer-events-none
-                            select-none
-                        "
-                        alt=""
-                    >
+            </div>
 
+
+            <!-- =============================================
+                 CONTEÚDO
+            ============================================== -->
+
+            <div
+                class="
+                    relative
+                    z-10
+                    grid
+                    grid-cols-[minmax(0,1fr)_300px]
+                    lg:grid-cols-[minmax(0,1fr)_340px]
+                    gap-6
+                    lg:gap-10
+                    mt-3
+                    md:mt-5
+                    h-[calc(100%-100px)]
+                    items-center
+                "
+            >
+
+
+                <!-- =========================================
+                     INFORMAÇÕES
+                ========================================== -->
+
+                <div class="min-w-0">
+
+
+                    <!-- CARGO -->
 
                     <div
+                        id="cargo"
                         class="
-                            absolute
-                            inset-[12%]
-                            rounded-sm
-                            overflow-hidden
+                            font-['Archivo_Black']
+                            text-3xl
+                            md:text-4xl
+                            lg:text-5xl
+                            text-[#1b623a]
+                            leading-none
+                            uppercase
+                            break-words
+                        "
+                    >
+                        Deputada(o) Federal
+                    </div>
+
+
+                    <!-- INSTRUÇÃO -->
+
+                    <div
+                        id="instrucao"
+                        class="
+                            mt-3
+                            text-xs
+                            md:text-sm
+                            font-bold
+                            uppercase
+                            tracking-wider
+                            text-[#d9660d]
+                        "
+                    >
+                        Digite o número do candidato
+                    </div>
+
+
+                    <!-- =====================================
+                         NÚMEROS
+                    ====================================== -->
+
+                    <div
+                        id="numero"
+                        class="
+                            flex
+                            items-center
+                            gap-2
+                            md:gap-3
+                            mt-5
+                            min-h-[65px]
+                            md:min-h-[75px]
+                        "
+                    ></div>
+
+
+                    <!-- =====================================
+                         DADOS
+                    ====================================== -->
+
+                    <div
+                        id="dadosCandidato"
+                        class="
+                            mt-5
+                            pt-4
+                            border-t-2
+                            border-dashed
+                            border-[#1b623a]/30
+                            space-y-2
                         "
                     >
 
-                        <img
-                            id="fotoCandidato"
-                            class="
-                                hidden
-                                absolute
-                                inset-0
-                                w-full
-                                h-full
-                                object-cover
-                            "
-                            alt="Foto do candidato"
-                        >
+                        <div class="text-sm md:text-base">
 
+                            <span class="font-bold text-[#1b623a]">
+                                Nome:
+                            </span>
 
-                        <div
-                            id="fotoPlaceholder"
-                            class="
-                                w-full
-                                h-full
-                                flex
-                                items-center
-                                justify-center
-                            "
-                        >
-
-                            <img
-                                src="../assets/images/Icon.png"
-                                alt=""
-                                class="h-16 md:h-20 lg:h-24"
+                            <span
+                                id="nomeCandidato"
+                                class="text-[#1b623a] ml-1"
                             >
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div class="text-sm md:text-base">
+
+                            <span class="font-bold text-[#1b623a]">
+                                Partido:
+                            </span>
+
+                            <span
+                                id="partidoCandidato"
+                                class="text-[#1b623a] ml-1"
+                            >
+                                —
+                            </span>
 
                         </div>
 
@@ -532,127 +314,1543 @@
                 </div>
 
 
-                <img
-                    src="../assets/images/orelhao.png"
+                <!-- =========================================
+                     FOTO
+                ========================================== -->
+
+                <div
                     class="
-                        absolute
-                        w-[80%]
-                        -top-[15%]
-                        -right-[40%]
-                        z-20
-                        pointer-events-none
-                        select-none
+                        relative
+                        w-full
+                        aspect-square
+                        max-w-[300px]
+                        lg:max-w-[340px]
+                        mx-auto
                     "
-                    alt=""
+                >
+
+                    <img
+                        src="../assets/images/textura1.png"
+                        class="
+                            absolute
+                            w-[55%]
+                            -bottom-[20%]
+                            -left-[35%]
+                            z-0
+                            pointer-events-none
+                            select-none
+                        "
+                        alt=""
+                    >
+
+
+                    <img
+                        src="../assets/images/textura2.png"
+                        class="
+                            absolute
+                            w-[100%]
+                            -top-[70%]
+                            -right-[60%]
+                            z-0
+                            pointer-events-none
+                            select-none
+                        "
+                        alt=""
+                    >
+
+
+                    <!-- MOLDURA -->
+
+                    <div
+                        class="
+                            relative
+                            z-10
+                            w-full
+                            h-full
+                        "
+                    >
+
+                        <img
+                            src="../assets/images/Moldura.png"
+                            class="
+                                absolute
+                                inset-0
+                                w-full
+                                h-full
+                                pointer-events-none
+                                select-none
+                            "
+                            alt=""
+                        >
+
+
+                        <div
+                            class="
+                                absolute
+                                inset-[12%]
+                                rounded-sm
+                                overflow-hidden
+                            "
+                        >
+
+                            <img
+                                id="fotoCandidato"
+                                class="
+                                    hidden
+                                    absolute
+                                    inset-0
+                                    w-full
+                                    h-full
+                                    object-cover
+                                "
+                                alt="Foto do candidato"
+                            >
+
+
+                            <div
+                                id="fotoPlaceholder"
+                                class="
+                                    w-full
+                                    h-full
+                                    flex
+                                    items-center
+                                    justify-center
+                                "
+                            >
+
+                                <img
+                                    src="../assets/images/Icon.png"
+                                    alt=""
+                                    class="h-16 md:h-20 lg:h-24"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <img
+                        src="../assets/images/orelhao.png"
+                        class="
+                            absolute
+                            w-[80%]
+                            -top-[15%]
+                            -right-[40%]
+                            z-20
+                            pointer-events-none
+                            select-none
+                        "
+                        alt=""
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 MENSAGEM
+            ============================================== -->
+
+            <div
+                id="mensagem"
+                class="
+                    absolute
+                    bottom-[58px]
+                    left-5
+                    right-5
+                    md:left-8
+                    md:right-8
+                    pt-3
+                    border-t-2
+                    border-[#7a0e0e]/30
+                    text-center
+                    text-sm
+                    md:text-base
+                    lg:text-lg
+                    font-extrabold
+                    uppercase
+                    tracking-wide
+                    text-[#3f4f45]
+                    transition-colors
+                    duration-300
+                    break-words
+                "
+            >
+                Digite o número
+            </div>
+
+
+            <!-- =============================================
+                 RODAPÉ
+            ============================================== -->
+
+            <div
+                class="
+                    absolute
+                    bottom-3
+                    left-5
+                    right-5
+                    md:left-8
+                    md:right-8
+                    flex
+                    items-center
+                    justify-between
+                    gap-3
+                "
+            >
+
+                <div
+                    class="
+                        font-['Archivo_Black']
+                        text-[#e3a99a]
+                        text-[10px]
+                        md:text-xs
+                        uppercase
+                        tracking-[0.25em]
+                    "
+                >
+                    Ilustrativo
+                </div>
+
+
+                <img
+                    src="../assets/images/Votus logo.png"
+                    alt="VOTUS"
+                    class="w-16 md:w-20 flex-shrink-0"
                 >
 
             </div>
 
         </div>
 
-
-        <!-- MENSAGEM -->
-
-        <div
-            id="mensagem"
-            class="
-                absolute
-                bottom-[58px]
-                left-5
-                right-5
-                md:left-8
-                md:right-8
-                pt-3
-                border-t-2
-                border-[#7a0e0e]/30
-                text-center
-                text-sm
-                md:text-base
-                lg:text-lg
-                font-extrabold
-                uppercase
-                tracking-wide
-                text-[#3f4f45]
-                transition-colors
-                duration-300
-                break-words
-            "
-        >
-            Digite o número
-        </div>
+    </main>
 
 
-        <!-- RODAPÉ -->
+    <!-- =====================================================
+         ÁUDIOS
+    ====================================================== -->
 
-        <div
-            class="
-                absolute
-                bottom-3
-                left-5
-                right-5
-                md:left-8
-                md:right-8
-                flex
-                items-center
-                justify-between
-                gap-3
-            "
+    <audio id="somClique" preload="auto">
+
+        <source
+            src="../assets/audios/Som-clicando.mp3"
+            type="audio/mpeg"
         >
 
-            <div
-                class="
-                    font-['Archivo_Black']
-                    text-[#e3a99a]
-                    text-[10px]
-                    md:text-xs
-                    uppercase
-                    tracking-[0.25em]
-                "
-            >
-                Ilustrativo
-            </div>
+    </audio>
 
 
-            <img
-                src="../assets/images/Votus logo.png"
-                alt="VOTUS"
-                class="w-16 md:w-20 flex-shrink-0"
-            >
+    <audio id="somConfirmacao" preload="auto">
 
-        </div>
+        <source
+            src="../assets/audios/som-confirmacao.mp3"
+            type="audio/mpeg"
+        >
 
-    </div>
-
-</main>
+    </audio>
 
 
-<!-- ÁUDIOS -->
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
-<audio id="somClique" preload="auto">
-
-    <source
-        src="../assets/audios/Som-clicando.mp3"
-        type="audio/mpeg"
-    >
-
-</audio>
+    <script>
 
 
-<audio id="somConfirmacao" preload="auto">
+        // =====================================================
+        // CHAPA 1
+        // =====================================================
 
-    <source
-        src="../assets/audios/som-confirmacao.mp3"
-        type="audio/mpeg"
-    >
+        const chapa1 = [
 
-</audio>
+            {
+                nome: "Russas",
+                cargo: "Deputada(o) Federal",
+                Partido: "Vale do Jaguaribe",
+                numero: "25"
+            },
+
+            {
+                nome: "Limoeiro do Norte",
+                cargo: "Deputada(o) Estadual",
+                Partido: "Vale do Jaguaribe",
+                numero: "31456"
+            },
+
+            {
+                nome: "Jaguaribe",
+                cargo: "Senadora(or) - 1ª vaga",
+                Partido: "Vale do Jaguaribe",
+                numero: "278"
+            },
+
+            {
+                nome: "Quixeré",
+                cargo: "Senadora(or) - 2ª vaga",
+                Partido: "Vale do Jaguaribe",
+                numero: "691"
+            },
+
+            {
+                nome: "Morada Nova",
+                cargo: "Governadora(or)",
+                Partido: "Vale do Jaguaribe",
+                numero: "37"
+            },
+
+            {
+                nome: "Tabuleiro do Norte",
+                cargo: "Presidente da República",
+                Partido: "Vale do Jaguaribe",
+                numero: "21"
+            }
+
+        ];
 
 
-<!-- JAVASCRIPT DA URNA -->
+        // =====================================================
+        // CHAPA 2
+        // =====================================================
 
-<script src="../assets/js/urna.js"></script>
-```
+        const chapa2 = {
+
+            numero: 2,
+
+            nome: "LITORAL LESTE",
+
+            candidatos: [
+
+                {
+                    nome: "Aracati",
+                    cargo: "Deputada(o) Federal",
+                    Partido: "Litoral Leste",
+                    numero: "45"
+                },
+
+                {
+                    nome: "Beberibe",
+                    cargo: "Deputada(o) Estadual",
+                    Partido: "Litoral Leste",
+                    numero: "67891"
+                },
+
+                {
+                    nome: "Cascavel",
+                    cargo: "Senadora(or) - 1ª vaga",
+                    Partido: "Litoral Leste",
+                    numero: "542"
+                },
+
+                {
+                    nome: "Fortim",
+                    cargo: "Senadora(or) - 2ª vaga",
+                    Partido: "Litoral Leste",
+                    numero: "783"
+                },
+
+                {
+                    nome: "Icapuí",
+                    cargo: "Governadora(or)",
+                    Partido: "Litoral Leste",
+                    numero: "56"
+                },
+
+                {
+                    nome: "Pindoretama",
+                    cargo: "Presidente da República",
+                    Partido: "Litoral Leste",
+                    numero: "18"
+                }
+
+            ]
+
+        };
+
+
+        // =====================================================
+        // CANDIDATOS
+        // =====================================================
+
+        const candidatos = [
+            ...chapa1,
+            ...chapa2.candidatos
+        ];
+
+
+        // =====================================================
+        // CARGOS
+        // =====================================================
+
+        const cargos = [
+
+            "Deputada(o) Federal",
+
+            "Deputada(o) Estadual",
+
+            "Senadora(or) - 1ª vaga",
+
+            "Senadora(or) - 2ª vaga",
+
+            "Governadora(or)",
+
+            "Presidente da República"
+
+        ];
+
+
+        // =====================================================
+        // ELEMENTOS
+        // =====================================================
+
+        const elementoCargo =
+            document.getElementById("cargo");
+
+        const elementoInstrucao =
+            document.getElementById("instrucao");
+
+        const elementoNumero =
+            document.getElementById("numero");
+
+        const elementoMensagem =
+            document.getElementById("mensagem");
+
+        const nomeCandidato =
+            document.getElementById("nomeCandidato");
+
+        const partidoCandidato =
+            document.getElementById("partidoCandidato");
+
+        const fotoCandidato =
+            document.getElementById("fotoCandidato");
+
+        const fotoPlaceholder =
+            document.getElementById("fotoPlaceholder");
+
+        const somClique =
+            document.getElementById("somClique");
+
+        const somConfirmacao =
+            document.getElementById("somConfirmacao");
+
+        const telaFinal =
+            document.getElementById("telaFinal");
+
+
+        // =====================================================
+        // ESTADO
+        // =====================================================
+
+        let cargoAtual = 0;
+
+        let votoAtual = "";
+
+        let votoConfirmado = false;
+
+        let votacaoFinalizada = false;
+
+
+        // =====================================================
+        // CLASSE DOS NÚMEROS
+        // =====================================================
+
+        const CLASSE_INPUT_NUMERO =
+            "numero-input font-['Space_Mono'] w-11 h-14 md:w-14 md:h-16 lg:w-16 lg:h-20 border-2 border-[#1b623a] rounded-md text-2xl md:text-3xl lg:text-4xl font-bold text-center text-[#1b623a] bg-transparent flex items-center justify-center select-none";
+
+
+        // =====================================================
+        // CANDIDATOS DO CARGO
+        // =====================================================
+
+        function getCandidatosDoCargo() {
+
+            const cargo =
+                cargos[cargoAtual];
+
+            return candidatos.filter(
+                candidato =>
+                    candidato.cargo === cargo
+            );
+
+        }
+
+
+        // =====================================================
+        // QUANTIDADE DE DÍGITOS
+        // =====================================================
+
+        function getQuantidadeDigitos() {
+
+            const cargo =
+                cargos[cargoAtual];
+
+
+            // FEDERAL = 4 DÍGITOS
+            if (
+                cargo === "Deputada(o) Federal"
+            ) {
+
+                return 4;
+
+            }
+
+
+            // ESTADUAL = 5 DÍGITOS
+            if (
+                cargo === "Deputada(o) Estadual"
+            ) {
+
+                return 5;
+
+            }
+
+
+            // SENADORES = 3 DÍGITOS
+            if (
+                cargo === "Senadora(or) - 1ª vaga" ||
+                cargo === "Senadora(or) - 2ª vaga"
+            ) {
+
+                return 3;
+
+            }
+
+
+            // GOVERNADORA = 2 DÍGITOS
+            if (
+                cargo === "Governadora(or)"
+            ) {
+
+                return 2;
+
+            }
+
+
+            // PRESIDENTE = 2 DÍGITOS
+            if (
+                cargo === "Presidente da República"
+            ) {
+
+                return 2;
+
+            }
+
+
+            return 0;
+
+        }
+
+
+        // =====================================================
+        // CRIAR QUADRINHOS
+        // =====================================================
+
+        function criarInputs() {
+
+            elementoNumero.innerHTML = "";
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+
+            const quantidade =
+                getQuantidadeDigitos();
+
+
+            for (
+                let i = 0;
+                i < quantidade;
+                i++
+            ) {
+
+                const caixa =
+                    document.createElement("div");
+
+
+                caixa.className =
+                    CLASSE_INPUT_NUMERO;
+
+
+                caixa.dataset.valor = "";
+
+
+                elementoNumero.appendChild(
+                    caixa
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // ADICIONAR NÚMERO
+        // =====================================================
+
+        function adicionarNumeroRemoto(valor) {
+
+            if (
+                votacaoFinalizada ||
+                votoConfirmado
+            ) {
+
+                return;
+
+            }
+
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            let inputLivre = null;
+
+
+            for (
+                const input of inputs
+            ) {
+
+                if (
+                    input.dataset.valor === ""
+                ) {
+
+                    inputLivre = input;
+
+                    break;
+
+                }
+
+            }
+
+
+            if (!inputLivre) {
+
+                return;
+
+            }
+
+
+            inputLivre.dataset.valor =
+                String(valor);
+
+
+            inputLivre.textContent =
+                String(valor);
+
+
+            inputLivre.classList.add(
+                "bg-[#eaf6ee]"
+            );
+
+
+            tocarSomClique();
+
+
+            atualizarVoto();
+
+
+            // Quando preencher todos os quadrinhos
+            if (
+                votoAtual.length ===
+                getQuantidadeDigitos()
+            ) {
+
+                verificarNumero();
+
+            }
+
+        }
+
+
+        // =====================================================
+        // ATUALIZAR VOTO
+        // =====================================================
+
+        function atualizarVoto() {
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            votoAtual = "";
+
+
+            inputs.forEach(
+                input => {
+
+                    votoAtual +=
+                        input.dataset.valor || "";
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // ENCONTRAR CANDIDATO
+        // =====================================================
+
+        function encontrarCandidato() {
+
+            const candidatosCargo =
+                getCandidatosDoCargo();
+
+
+            let numeroDigitado =
+                String(votoAtual);
+
+
+            const cargo =
+                cargos[cargoAtual];
+
+
+            /*
+                Federal possui 4 casas na urna.
+
+                Os candidatos continuam cadastrados
+                como "25" e "45".
+
+                Portanto:
+
+                0025 → 25
+                0045 → 45
+            */
+
+            if (
+                cargo === "Deputada(o) Federal"
+            ) {
+
+                numeroDigitado =
+                    numeroDigitado.replace(
+                        /^0+/,
+                        ""
+                    );
+
+            }
+
+
+            return candidatosCargo.find(
+                candidato => {
+
+                    return String(
+                        candidato.numero
+                    ) === numeroDigitado;
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // VERIFICAR NÚMERO
+        // =====================================================
+
+        function verificarNumero() {
+
+            atualizarVoto();
+
+
+            const quantidade =
+                getQuantidadeDigitos();
+
+
+            if (
+                votoAtual.length !==
+                quantidade
+            ) {
+
+                return;
+
+            }
+
+
+            const candidato =
+                encontrarCandidato();
+
+
+            if (candidato) {
+
+                mostrarCandidato(
+                    candidato
+                );
+
+            } else {
+
+                mostrarNumeroInvalido();
+
+            }
+
+        }
+
+
+        // =====================================================
+        // MOSTRAR CANDIDATO
+        // =====================================================
+
+        function mostrarCandidato(candidato) {
+
+            nomeCandidato.innerText =
+                candidato.nome.trim();
+
+
+            partidoCandidato.innerText =
+                candidato.Partido;
+
+
+            mostrarFoto(
+                candidato
+            );
+
+
+            definirMensagem(
+                "Confira os dados e pressione CONFIRMA para confirmar."
+            );
+
+        }
+
+
+        // =====================================================
+        // MOSTRAR FOTO
+        // =====================================================
+
+        function mostrarFoto(candidato) {
+
+            const nomeArquivo =
+                removerAcentos(
+                    candidato.nome.trim()
+                );
+
+
+            const caminhoFoto =
+                "../assets/images/" +
+                encodeURIComponent(nomeArquivo) +
+                ".png";
+
+
+            fotoCandidato.onerror =
+                () => {
+
+                    esconderFoto();
+
+                };
+
+
+            fotoCandidato.onload =
+                () => {
+
+                    fotoCandidato.classList.remove(
+                        "hidden"
+                    );
+
+                    fotoPlaceholder.classList.add(
+                        "hidden"
+                    );
+
+                };
+
+
+            fotoCandidato.src =
+                caminhoFoto;
+
+        }
+
+
+        // =====================================================
+        // ESCONDER FOTO
+        // =====================================================
+
+        function esconderFoto() {
+
+            fotoCandidato.classList.add(
+                "hidden"
+            );
+
+
+            fotoCandidato.removeAttribute(
+                "src"
+            );
+
+
+            fotoPlaceholder.classList.remove(
+                "hidden"
+            );
+
+        }
+
+
+        // =====================================================
+        // REMOVER ACENTOS
+        // =====================================================
+
+        function removerAcentos(texto) {
+
+            return texto
+                .normalize("NFD")
+                .replace(
+                    /[\u0300-\u036f]/g,
+                    ""
+                );
+
+        }
+
+
+        // =====================================================
+        // NÚMERO INVÁLIDO
+        // =====================================================
+
+        function mostrarNumeroInvalido() {
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem(
+                "✕ NÚMERO INVÁLIDO",
+                "invalido"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    limparTodosInputs();
+
+                },
+                1000
+            );
+
+        }
+
+
+        // =====================================================
+        // LIMPAR
+        // =====================================================
+
+        function limparTodosInputs() {
+
+            if (
+                votacaoFinalizada
+            ) {
+
+                return;
+
+            }
+
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            inputs.forEach(
+                input => {
+
+                    input.textContent = "";
+
+                    input.dataset.valor = "";
+
+                    input.classList.remove(
+                        "bg-[#eaf6ee]"
+                    );
+
+                }
+            );
+
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+        }
+
+
+        // =====================================================
+        // LIMPAR DADOS
+        // =====================================================
+
+        function limparDadosCandidato() {
+
+            nomeCandidato.innerText =
+                "—";
+
+
+            partidoCandidato.innerText =
+                "—";
+
+        }
+
+
+        // =====================================================
+        // MENSAGEM
+        // =====================================================
+
+        function definirMensagem(
+            texto,
+            tipo = "padrao"
+        ) {
+
+            elementoMensagem.innerText =
+                texto;
+
+
+            elementoMensagem.classList.remove(
+                "text-[#3f4f45]",
+                "text-[#8d0801]",
+                "text-[#1b623a]",
+                "text-[#d9660d]"
+            );
+
+
+            if (
+                tipo === "invalido"
+            ) {
+
+                elementoMensagem.classList.add(
+                    "text-[#8d0801]"
+                );
+
+            } else if (
+                tipo === "confirmado"
+            ) {
+
+                elementoMensagem.classList.add(
+                    "text-[#1b623a]"
+                );
+
+            } else if (
+                tipo === "branco"
+            ) {
+
+                elementoMensagem.classList.add(
+                    "text-[#d9660d]"
+                );
+
+            } else {
+
+                elementoMensagem.classList.add(
+                    "text-[#3f4f45]"
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // SOM DE CLIQUE
+        // =====================================================
+
+        function tocarSomClique() {
+
+            somClique.currentTime = 0;
+
+            somClique
+                .play()
+                .catch(() => {});
+
+        }
+
+
+        // =====================================================
+        // SOM DE CONFIRMAÇÃO
+        // =====================================================
+
+        function tocarSomConfirmacao() {
+
+            somConfirmacao.currentTime = 0;
+
+            somConfirmacao
+                .play()
+                .catch(() => {});
+
+        }
+
+
+        // =====================================================
+        // VOTO EM BRANCO
+        // =====================================================
+
+        function votarBranco() {
+
+            if (
+                votacaoFinalizada ||
+                votoConfirmado
+            ) {
+
+                return;
+
+            }
+
+
+            votoConfirmado = true;
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            tocarSomConfirmacao();
+
+
+            definirMensagem(
+                "▢ VOTO EM BRANCO CONFIRMADO",
+                "branco"
+            );
+
+
+            desabilitarInputs();
+
+
+            setTimeout(
+                () => {
+
+                    proximoCargo();
+
+                },
+                1200
+            );
+
+        }
+
+
+        // =====================================================
+        // DESABILITAR
+        // =====================================================
+
+        function desabilitarInputs() {
+
+            const inputs =
+                elementoNumero.querySelectorAll(
+                    ".numero-input"
+                );
+
+
+            inputs.forEach(
+                input => {
+
+                    input.classList.add(
+                        "opacity-60"
+                    );
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // CONFIRMAR
+        // =====================================================
+
+        function confirmarVoto() {
+
+            if (
+                votacaoFinalizada ||
+                votoConfirmado
+            ) {
+
+                return;
+
+            }
+
+
+            atualizarVoto();
+
+
+            if (
+                votoAtual.length !==
+                getQuantidadeDigitos()
+            ) {
+
+                definirMensagem(
+                    "Digite todos os números."
+                );
+
+                return;
+
+            }
+
+
+            const candidato =
+                encontrarCandidato();
+
+
+            if (!candidato) {
+
+                definirMensagem(
+                    "✕ NÚMERO INVÁLIDO",
+                    "invalido"
+                );
+
+                return;
+
+            }
+
+
+            votoConfirmado = true;
+
+
+            tocarSomConfirmacao();
+
+
+            definirMensagem(
+                "✓ VOTO CONFIRMADO",
+                "confirmado"
+            );
+
+
+            desabilitarInputs();
+
+
+            setTimeout(
+                () => {
+
+                    proximoCargo();
+
+                },
+                1200
+            );
+
+        }
+
+
+        // =====================================================
+        // PRÓXIMO CARGO
+        // =====================================================
+
+        function proximoCargo() {
+
+            cargoAtual++;
+
+
+            if (
+                cargoAtual >=
+                cargos.length
+            ) {
+
+                finalizarVotacao();
+
+                return;
+
+            }
+
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            elementoCargo.innerText =
+                cargos[cargoAtual];
+
+
+            elementoInstrucao.innerText =
+                "Digite o número do candidato";
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            criarInputs();
+
+        }
+
+
+        // =====================================================
+        // FINALIZAR
+        // =====================================================
+
+        function finalizarVotacao() {
+
+            votacaoFinalizada = true;
+
+
+            elementoCargo.innerText =
+                "VOTAÇÃO ENCERRADA";
+
+
+            elementoInstrucao.innerText =
+                "Obrigado por votar";
+
+
+            elementoNumero.innerHTML =
+                "";
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem("");
+
+
+            telaFinal.classList.remove(
+                "hidden"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    reiniciarVotacao();
+
+                },
+                5000
+            );
+
+        }
+
+
+        // =====================================================
+        // REINICIAR
+        // =====================================================
+
+        function reiniciarVotacao() {
+
+            telaFinal.classList.add(
+                "hidden"
+            );
+
+
+            cargoAtual = 0;
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+            votacaoFinalizada = false;
+
+
+            elementoCargo.innerText =
+                cargos[0];
+
+
+            elementoInstrucao.innerText =
+                "Digite o número do candidato";
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            criarInputs();
+
+        }
+
+
+        // =====================================================
+        // WEBSOCKET
+        // =====================================================
+
+        const protocolo =
+            location.protocol === "https:"
+                ? "wss:"
+                : "ws:";
+
+
+        const socket =
+            new WebSocket(
+                `${protocolo}//${location.host}`
+            );
+
+
+        socket.addEventListener(
+            "open",
+            () => {
+
+                console.log(
+                    "Visor conectado ao servidor."
+                );
+
+            }
+        );
+
+
+        socket.addEventListener(
+            "close",
+            () => {
+
+                console.log(
+                    "Servidor desconectado."
+                );
+
+            }
+        );
+
+
+        socket.addEventListener(
+            "error",
+            erro => {
+
+                console.log(
+                    "Erro no WebSocket:",
+                    erro
+                );
+
+            }
+        );
+
+
+        // =====================================================
+        // RECEBER DO CELULAR
+        // =====================================================
+
+        socket.addEventListener(
+            "message",
+            event => {
+
+                try {
+
+                    const dados =
+                        JSON.parse(
+                            event.data
+                        );
+
+
+                    const comando =
+                        dados.comando;
+
+
+                    if (!comando) {
+
+                        return;
+
+                    }
+
+
+                    if (
+                        comando.tipo ===
+                        "numero"
+                    ) {
+
+                        adicionarNumeroRemoto(
+                            comando.valor
+                        );
+
+                    }
+
+
+                    if (
+                        comando.tipo === "acao" &&
+                        comando.valor === "branco"
+                    ) {
+
+                        votarBranco();
+
+                    }
+
+
+                    if (
+                        comando.tipo === "acao" &&
+                        comando.valor === "corrige"
+                    ) {
+
+                        limparTodosInputs();
+
+                    }
+
+
+                    if (
+                        comando.tipo === "acao" &&
+                        comando.valor === "confirma"
+                    ) {
+
+                        confirmarVoto();
+
+                    }
+
+                } catch (erro) {
+
+                    console.log(
+                        "Comando inválido:",
+                        erro
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
+        // INICIAR
+        // =====================================================
+
+        iniciarUrna();
+
+
+        function iniciarUrna() {
+
+            cargoAtual = 0;
+
+            votoAtual = "";
+
+            votoConfirmado = false;
+
+            votacaoFinalizada = false;
+
+
+            elementoCargo.innerText =
+                cargos[0];
+
+
+            elementoInstrucao.innerText =
+                "Digite o número do candidato";
+
+
+            limparDadosCandidato();
+
+            esconderFoto();
+
+
+            definirMensagem(
+                "Digite o número"
+            );
+
+
+            criarInputs();
+
+        }
+
+    </script>
 
 </body>
 
 </html>
+```
