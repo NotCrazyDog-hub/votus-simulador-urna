@@ -1,6 +1,10 @@
+// =====================================================
+// CHAPA 1
+// =====================================================
+
 const chapa1 = [
     {
-        nome: "Russas ",
+        nome: "Russas",
         cargo: "Deputada(o) Federal",
         Partido: "Vale do Jaguaribe",
         numero: "1234"
@@ -30,13 +34,17 @@ const chapa1 = [
         numero: "37"
     },
     {
-        
         nome: "Tabuleiro do Norte",
         cargo: "Presidente da República",
         Partido: "Vale do Jaguaribe",
         numero: "21"
     }
 ];
+
+
+// =====================================================
+// CHAPA 2
+// =====================================================
 
 const chapa2 = {
     numero: 2,
@@ -82,3 +90,26 @@ const chapa2 = {
     ]
 };
 
+
+// =====================================================
+// TODOS OS CANDIDATOS
+// =====================================================
+
+const candidatos = [
+    ...chapa1,
+    ...chapa2.candidatos
+];
+
+
+// =====================================================
+// CARGOS
+// =====================================================
+
+const cargos = [
+    "Deputada(o) Federal",
+    "Deputada(o) Estadual",
+    "Senadora(or) - 1ª vaga",
+    "Senadora(or) - 2ª vaga",
+    "Governadora(or)",
+    "Presidente da República"
+];
