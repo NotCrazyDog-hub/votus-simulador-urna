@@ -574,157 +574,121 @@
     <script>
 
 
-        // =====================================================
-        // CHAPA 1
-        // =====================================================
+            // =====================================================
+    // CHAPA 1
+    // =====================================================
 
-        const chapa1 = [
+    const chapa1 = [
+        {
+            nome: "Russas",
+            cargo: "Deputada(o) Federal",
+            Partido: "Vale do Jaguaribe",
+            numero: "1234"
+        },
+        {
+            nome: "Limoeiro do Norte",
+            cargo: "Deputada(o) Estadual",
+            Partido: "Vale do Jaguaribe",
+            numero: "31456"
+        },
+        {
+            nome: "Jaguaribe",
+            cargo: "Senadora(or) - 1ª vaga",
+            Partido: "Vale do Jaguaribe",
+            numero: "278"
+        },
+        {
+            nome: "Quixeré",
+            cargo: "Senadora(or) - 2ª vaga",
+            Partido: "Vale do Jaguaribe",
+            numero: "691"
+        },
+        {
+            nome: "Morada Nova",
+            cargo: "Governadora(or)",
+            Partido: "Vale do Jaguaribe",
+            numero: "37"
+        },
+        {
+            nome: "Tabuleiro do Norte",
+            cargo: "Presidente da República",
+            Partido: "Vale do Jaguaribe",
+            numero: "21"
+        }
+    ];
 
+
+    // =====================================================
+    // CHAPA 2
+    // =====================================================
+
+    const chapa2 = {
+        numero: 2,
+        nome: "LITORAL LESTE",
+
+        candidatos: [
             {
-                nome: "Russas",
+                nome: "Aracati",
                 cargo: "Deputada(o) Federal",
-                Partido: "edudantil",
-                numero: "1234",
-                foto: "Oliveira.png"
+                Partido: "Litoral Leste",
+                numero: "5678"
             },
-
             {
-                nome: "Limoeiro do Norte",
+                nome: "Beberibe",
                 cargo: "Deputada(o) Estadual",
-                Partido: "edudantil",
-                numero: "31456",
-                foto: "Gustavo.png"
+                Partido: "Litoral Leste",
+                numero: "67891"
             },
-
             {
-                nome: "Jaguaribe",
+                nome: "Cascavel",
                 cargo: "Senadora(or) - 1ª vaga",
-                Partido: "edudantil",
-                numero: "278",
-                foto: "Dafny.png"
+                Partido: "Litoral Leste",
+                numero: "542"
             },
-
             {
-                nome: "Quixeré",
+                nome: "Fortim",
                 cargo: "Senadora(or) - 2ª vaga",
-                Partido: "edudantil",
-                numero: "691",
-                foto: "Arielly.png"
+                Partido: "Litoral Leste",
+                numero: "783"
             },
-
             {
-                nome: "Morada Nova",
+                nome: "Icapuí",
                 cargo: "Governadora(or)",
-                Partido: "edudantil",
-                numero: "37",
-                foto: "Kerllon_Sousa.png"
+                Partido: "Litoral Leste",
+                numero: "56"
             },
-
             {
-                nome: "Tabuleiro do Norte",
+                nome: "Pindoretama",
                 cargo: "Presidente da República",
-                Partido: "edudantil",
-                numero: "21",
-                foto: "Eva.png"
+                Partido: "Litoral Leste",
+                numero: "18"
             }
-
-        ];
-
-
-        // =====================================================
-        // CHAPA 2
-        // =====================================================
-
-        const chapa2 = {
-
-            numero: 2,
-
-            nome: "LITORAL LESTE",
-
-            candidatos: [
-
-                {
-                    nome: "Aracati",
-                    cargo: "Deputada(o) Federal",
-                    Partido: "docente",
-                    numero: "5678",
-                foto: "Elenir.png"
-                },
-
-                {
-                    nome: "Beberibe",
-                    cargo: "Deputada(o) Estadual",
-                    Partido: "docente",
-                    numero: "67891",
-                foto: "Rosangela.png"
-                },
-
-                {
-                    nome: "Cascavel",
-                    cargo: "Senadora(or) - 1ª vaga",
-                    Partido: "docente",
-                    numero: "542",
-                foto: "Israely.png"
-                },
-
-                {
-                    nome: "Fortim",
-                    cargo: "Senadora(or) - 2ª vaga",
-                    Partido: "docente",
-                    numero: "783",
-                foto: "Silvania.png"
-                },
-
-                {
-                    nome: "Icapuí",
-                    cargo: "Governadora(or)",
-                    Partido: "docente",
-                    numero: "56",
-                foto: "Natan.png"
-                },
-
-                {
-                    nome: "Pindoretama",
-                    cargo: "Presidente da República",
-                    Partido: "docente",
-                    numero: "18",
-                foto: "Rusilania.png"
-                }
-
-            ]
-
-        };
+        ]
+    };
 
 
-        // =====================================================
-        // CANDIDATOS
-        // =====================================================
+    // =====================================================
+    // TODOS OS CANDIDATOS
+    // =====================================================
 
-        const candidatos = [
-            ...chapa1,
-            ...chapa2.candidatos
-        ];
+    const candidatos = [
+        ...chapa1,
+        ...chapa2.candidatos
+    ];
 
 
-        // =====================================================
-        // CARGOS
-        // =====================================================
+    // =====================================================
+    // CARGOS
+    // =====================================================
 
-        const cargos = [
-
-            "Deputada(o) Federal",
-
-            "Deputada(o) Estadual",
-
-            "Senadora(or) - 1ª vaga",
-
-            "Senadora(or) - 2ª vaga",
-
-            "Governadora(or)",
-
-            "Presidente da República"
-
-        ];
+    const cargos = [
+        "Deputada(o) Federal",
+        "Deputada(o) Estadual",
+        "Senadora(or) - 1ª vaga",
+        "Senadora(or) - 2ª vaga",
+        "Governadora(or)",
+        "Presidente da República"
+    ];
 
 
         // =====================================================
