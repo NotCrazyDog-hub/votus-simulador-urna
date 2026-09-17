@@ -79,4 +79,5 @@ const cargos = [
     "Senadora(or) - 2ª vaga",
     "Governadora(or)",
     "Presidente da República"
-];
+]; 
+
